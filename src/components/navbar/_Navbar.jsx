@@ -16,13 +16,14 @@ export const Navbar = () => {
       gap={5}
       position="fixed"
       width="100%"
+      zIndex={"20"}
     >
       <LogoNavbar />
       <SearchNavbar />
       <ButtonSolidNavbar />
       <Spacer />
-      <ButtonLinkNavbar name="Sign In" />
-      <ButtonLinkNavbar name="Sign Up" />
+      <ButtonLinkNavbar modal="Sign In" />
+      <ButtonLinkNavbar modal="Sign Up" />
     </Flex>
   );
 };

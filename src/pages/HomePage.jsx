@@ -1,17 +1,15 @@
 import React from "react";
-import { Navbar } from "../components/navbar/_Navbar";
 import { Box } from "@chakra-ui/react";
-import { CarouselTop5 } from "../components/carousel/_CarouselTop5";
+import { Carousel } from "../components/carousel/_Carousel";
+import { Category } from "../components/category/_Category";
+import { CardBox } from "../components/card/_Card";
 
 export const HomePage = () => {
   return (
     <Box>
-      <Box>
-        <Navbar />
-      </Box>
-      <Box>
-        <CarouselTop5 />
-      </Box>
+      <Carousel />
+      <Category />
+      <CardBox />
     </Box>
   );
 };

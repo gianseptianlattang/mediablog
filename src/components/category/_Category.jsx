@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import { Navbar } from "../components/navbar/_Navbar";
+import { Category1 } from "./Category";
 
-export const LoginPage = () => {
+export const Category = () => {
   return (
     <Box>
-      <Navbar />
+      <Category1 />
     </Box>
   );
 };
