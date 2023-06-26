@@ -24,7 +24,6 @@ export const CardFrame = () => {
       const res = await axios.get(`${baseUrl}api/blog?sort=DESC&page=1`);
       const data = res.data.result;
       setCard(data);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
