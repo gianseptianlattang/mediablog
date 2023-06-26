@@ -1,111 +1,65 @@
 import {
-  Box,
   Button,
-  Container,
+  Card,
+  CardBody,
+  Divider,
   Flex,
   Heading,
-  Icon,
+  Image,
+  Spacer,
   Stack,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
-import {
-  FcAbout,
-  FcAssistant,
-  FcCollaboration,
-  FcDonate,
-  FcManager,
-} from "react-icons/fc";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { FcLike } from "react-icons/fc";
 
-const Card = ({ heading, description, icon }) => {
-  return (
-    <Box
-      maxW={{ base: "full", md: "275px" }}
-      w={"full"}
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      p={5}
-    >
-      <Stack align={"start"} spacing={2}>
-        <Flex
-          w={16}
-          h={16}
-          align={"center"}
-          justify={"center"}
-          color={"white"}
-          rounded={"full"}
-          bg={useColorModeValue("gray.100", "gray.700")}
-        >
-          {icon}
+const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
+
+export const CardFrame = () => {
+  const [card, setCard] = useState([]);
+
+  const fetchCard = async () => {
+    try {
+      const res = await axios.get(`${baseUrl}api/blog?sort=DESC&page=1`);
+      const data = res.data.result;
+      setCard(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchCard();
+  }, []);
+
+  return card.map((item) => {
+    return (
+      <Card w={"350px"}>
+        <CardBody>
+          <Image
+            src={`${baseUrl}${item.imageURL}`}
+            alt={item.title}
+            borderRadius="lg"
+          />
+          <Stack mt="6" spacing="3">
+            <Heading size="md">{item.title}</Heading>
+            <Text>{item.content}</Text>
+          </Stack>
+        </CardBody>
+        <Divider />
+
+        <Flex p={"30px"} justifyContent="space-between">
+          <Button variant="solid" colorScheme="orange">
+            Read More
+          </Button>
+          <Spacer />
+          <Button variant="outline" leftIcon={<FcLike />}>
+            Like
+          </Button>
         </Flex>
-        <Box mt={2}>
-          <Heading size="md">{heading}</Heading>
-          <Text mt={1} fontSize={"sm"}>
-            {description}
-          </Text>
-        </Box>
-        <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
-          Learn more
-        </Button>
-      </Stack>
-    </Box>
-  );
-};
-
-export const GridListWith = () => {
-  return (
-    <Box p={4}>
-      <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"}>
-          Our Articles..
-        </Heading>
-      </Stack>
-
-      <Container maxW={"5xl"} mt={12}>
-        <Flex flexWrap="wrap" gridGap={6} justify="center">
-          <Card
-            heading={"Heading"}
-            icon={<Icon as={FcAssistant} w={10} h={10} />}
-            description={
-              "Lorem ipsum dolor sit amet catetur, adipisicing elit."
-            }
-            href={"#"}
-          />
-          <Card
-            heading={"Heading"}
-            icon={<Icon as={FcCollaboration} w={10} h={10} />}
-            description={
-              "Lorem ipsum dolor sit amet catetur, adipisicing elit."
-            }
-            href={"#"}
-          />
-          <Card
-            heading={"Heading"}
-            icon={<Icon as={FcDonate} w={10} h={10} />}
-            description={
-              "Lorem ipsum dolor sit amet catetur, adipisicing elit."
-            }
-            href={"#"}
-          />
-          <Card
-            heading={"Heading"}
-            icon={<Icon as={FcManager} w={10} h={10} />}
-            description={
-              "Lorem ipsum dolor sit amet catetur, adipisicing elit."
-            }
-            href={"#"}
-          />
-          <Card
-            heading={"Heading"}
-            icon={<Icon as={FcAbout} w={10} h={10} />}
-            description={
-              "Lorem ipsum dolor sit amet catetur, adipisicing elit."
-            }
-            href={"#"}
-          />
-        </Flex>
-      </Container>
-    </Box>
-  );
+      </Card>
+    );
+  });
 };

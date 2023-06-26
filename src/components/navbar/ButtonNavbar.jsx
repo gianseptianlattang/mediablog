@@ -6,21 +6,24 @@ import { closeFormModal, formModal } from "../../service/reducer/userReducer";
 
 export const ButtonSolidNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+
+  function openModalSignIn() {
+    onOpen();
+    dispatch(formModal(true));
+    dispatch(closeFormModal());
+  }
   return (
     <Box>
       <Button
-        onClick={onOpen}
+        onClick={openModalSignIn}
         borderRadius="full"
         colorScheme="blackAlpha"
         size="md"
       >
         Start Writing
       </Button>
-      <ModalLoginRegis
-        isOpen={isOpen}
-        onClose={onClose}
-        loginRegist="Sign In"
-      />
+      <ModalLoginRegis isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

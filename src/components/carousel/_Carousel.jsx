@@ -1,12 +1,13 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import { Carousel1, Carousel2 } from "./Carousel";
+import { CarouselFav } from "./CarouselFav";
+import { CarouselNew } from "./CarouselNew";
 
 export const Carousel = () => {
   return (
     <Box>
-      <Carousel1 />
-      <Carousel2 />
+      <CarouselFav />
+      <CarouselNew />
     </Box>
   );
 };

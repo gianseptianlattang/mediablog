@@ -17,7 +17,6 @@ export function ModalLoginRegis({ isOpen, onClose }) {
   const closeButton = () => {
     dispatch(closeFormModal());
   };
-  console.log(closeModal);
   return (
     <Modal isOpen={closeModal} onClose={onClose}>
       <ModalOverlay />

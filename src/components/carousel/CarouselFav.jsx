@@ -4,28 +4,39 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
   Box,
-  Card,
-  CardBody,
   Center,
   Flex,
   Heading,
   IconButton,
   Image,
-  Stack,
   Text,
 } from "@chakra-ui/react";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
-import { hotelCards } from "./DataDummy";
+import axios from "axios";
 
-export const Carousel1 = () => {
+const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
+
+export const CarouselFav = () => {
+  const [fav, setFav] = useState([]);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   let sliderRef1 = useRef(null);
   let sliderRef2 = useRef(null);
 
+  const fetchFav = async () => {
+    try {
+      const res = await axios.get(`${baseUrl}api/blog/pagFav`);
+      const data = res.data.result;
+      setFav(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     setNav1(sliderRef1);
     setNav2(sliderRef2);
+    fetchFav();
   }, []);
 
   return (
@@ -42,10 +53,10 @@ export const Carousel1 = () => {
             fade={true}
             speed={1000}
           >
-            {hotelCards.map((item) => {
+            {fav.map((item) => {
               return (
                 <Box
-                  backgroundImage={item.imageSrc}
+                  backgroundImage={`${baseUrl}${item.imageURL}`}
                   h={"600px"}
                   borderRadius={"50px"}
                 >
@@ -55,16 +66,15 @@ export const Carousel1 = () => {
                     left="50px"
                     textAlign="left"
                     backgroundColor={"blackAlpha.600"}
+                    mr={"60px"}
                     px={"10px"}
                     pb={"5px"}
                     borderRadius={"10px"}
                   >
-                    <Heading size="xl" color="white">
+                    <Heading size="lg" color="white">
                       {item.title}
                     </Heading>
-                    <Text as="b" fontSize="xl" color="white">
-                      {item.description}
-                    </Text>
+                    <Text color={"white"}>{item.content}</Text>
                   </Box>
                 </Box>
               );
@@ -101,14 +111,14 @@ export const Carousel1 = () => {
             autoplaySpeed={3000}
             pauseOnHover={true}
           >
-            {hotelCards.map((item) => {
+            {fav.map((item) => {
               return (
                 <Box>
                   <Center>
                     <Image
                       w={"180px"}
                       h={"120px"}
-                      src={item.imageSrc}
+                      src={`${baseUrl}${item.imageURL}`}
                       alt={item.title}
                       borderRadius="lg"
                     />
@@ -133,56 +143,6 @@ export const Carousel1 = () => {
           </IconButton>
         </Box>
       </Flex>
-    </Box>
-  );
-};
-
-export const Carousel2 = () => {
-  const settings = {
-    infinite: true,
-    slidesToShow: 5,
-    autoplay: true,
-    speed: 3000,
-    autoplaySpeed: 3000,
-    cssEase: "linear",
-  };
-  return (
-    <Box backgroundColor={"black"} py={"20px"}>
-      <Heading
-        fontSize={{ base: "2xl", sm: "4xl" }}
-        fontWeight={"bold"}
-        color={"white"}
-      >
-        New Article..
-      </Heading>
-      <Box px={"60px"}>
-        <Slider {...settings}>
-          {hotelCards.map((item) => {
-            return (
-              <Card maxW="sm">
-                <CardBody backgroundColor={"black"}>
-                  <Center>
-                    <Image
-                      boxShadow={"2xl"}
-                      w={"200px"}
-                      h={"150px"}
-                      src={item.imageSrc}
-                      alt={item.title}
-                      borderRadius="lg"
-                    />
-                  </Center>
-                  <Stack>
-                    <Heading color={"white"} size="md">
-                      {item.title}
-                    </Heading>
-                    <Text color={"white"}>{item.description}</Text>
-                  </Stack>
-                </CardBody>
-              </Card>
-            );
-          })}
-        </Slider>
-      </Box>
     </Box>
   );
 };
