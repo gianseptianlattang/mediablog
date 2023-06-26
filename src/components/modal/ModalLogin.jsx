@@ -15,7 +15,6 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  useDisclosure,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ButtonModal } from "./ButtonModal";
