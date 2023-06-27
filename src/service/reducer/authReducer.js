@@ -45,7 +45,7 @@ export const keepLogin = () => {
 
     if (token) {
       try {
-        const res = await axios.get(
+        const { data } = await axios.get(
           "https://minpro-blog.purwadhikabootcamp.com/api/auth/",
           {
             headers: {
@@ -53,7 +53,7 @@ export const keepLogin = () => {
             },
           }
         );
-        dispatch(setUser(res.data));
+        dispatch(setUser(data));
         dispatch(userLogin());
       } catch (err) {
         console.log(err);

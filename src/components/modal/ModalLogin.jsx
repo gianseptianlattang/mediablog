@@ -23,7 +23,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { closeFormModal } from "../../service/reducer/userReducer";
-import { userLogin } from "../../service/reducer/authReducer";
+import { setUser, userLogin } from "../../service/reducer/authReducer";
 import axios from "axios";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
@@ -51,7 +51,7 @@ const fetchUser = async (values) => {
     const { data } = await axios.post(`${baseUrl}api/auth/login`, values);
     if (data.isAccountExist) {
       localStorage.setItem("tokenLogin", data.token);
-      return "success";
+      return ["success", data];
     }
   } catch (err) {
     console.log(err);
@@ -88,8 +88,9 @@ export const ModalLogin = () => {
 
     onSubmit: async (values) => {
       const userToast = await fetchUser(values);
-      if (userToast === "success") {
+      if (userToast[0] === "success") {
         handleLoginToast("success", "Successfully logged in");
+        dispatch(setUser(userToast[1].isAccountExist));
         dispatch(userLogin());
         closeModal();
       } else {

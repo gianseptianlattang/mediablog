@@ -7,6 +7,9 @@ export const DataProfile = () => {
   const edit = useSelector((state) =>
     JSON.parse(state.changeProfileEdit.dataProfile)
   );
+  const { username, email, phone } = useSelector(
+    (state) => state.authUser.user
+  );
   return (
     <Box>
       <Grid
@@ -31,7 +34,7 @@ export const DataProfile = () => {
         </GridItem>
         <GridItem colSpan={3}>
           {edit ? (
-            <Input value={"Gian"} />
+            <Input value={username} />
           ) : (
             <Text
               fontSize={"xl"}
@@ -39,7 +42,7 @@ export const DataProfile = () => {
               fontFamily={"body"}
               align={"left"}
             >
-              : Gian
+              : {username}
             </Text>
           )}
         </GridItem>
@@ -55,7 +58,7 @@ export const DataProfile = () => {
         </GridItem>
         <GridItem colSpan={3}>
           {edit ? (
-            <Input value={"gian@test.com"} />
+            <Input value={email} />
           ) : (
             <Text
               fontSize={"xl"}
@@ -63,7 +66,7 @@ export const DataProfile = () => {
               fontFamily={"body"}
               align={"left"}
             >
-              : gian@test.com
+              : {email}
             </Text>
           )}
         </GridItem>
@@ -79,7 +82,7 @@ export const DataProfile = () => {
         </GridItem>
         <GridItem colSpan={3}>
           {edit ? (
-            <Input value="08765434567" />
+            <Input value={phone} />
           ) : (
             <Text
               fontSize={"xl"}
@@ -87,7 +90,7 @@ export const DataProfile = () => {
               fontFamily={"body"}
               align={"left"}
             >
-              : 08765434567
+              : {phone}
             </Text>
           )}
         </GridItem>

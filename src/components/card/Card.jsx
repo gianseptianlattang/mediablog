@@ -22,9 +22,11 @@ export const CardFrame = () => {
 
   const fetchCard = async () => {
     try {
-      const res = await axios.get(`${baseUrl}api/blog?sort=DESC&page=1`);
-      const data = res.data.result;
-      setCard(data);
+      const res = await axios.get(
+        `${baseUrl}api/blog?sort=DESC&page=1&size=12`
+      );
+      const data = res.data;
+      setCard(data.result);
     } catch (err) {
       console.log(err);
     }
