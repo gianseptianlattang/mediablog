@@ -7,8 +7,6 @@ export const DataProfile = () => {
   const edit = useSelector((state) =>
     JSON.parse(state.changeProfileEdit.dataProfile)
   );
-  console.log(`edit ${edit}`);
-  console.log(`test ${typeof edit}`);
   return (
     <Box>
       <Grid

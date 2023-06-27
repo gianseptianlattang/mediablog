@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeFormModal, formModal } from "../../service/reducer/userReducer";
 
 export const ButtonStartWriting = () => {
-  const isLogin = useSelector((state) => state.changeModal.isLogin);
+  const isLogin = useSelector((state) => state.authUser.isLogin);
   const { isOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
 

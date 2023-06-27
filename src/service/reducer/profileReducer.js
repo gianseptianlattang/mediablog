@@ -9,7 +9,6 @@ export const ProfileReducer = createSlice({
   initialState,
   reducers: {
     profileEdit: (state, action) => {
-      console.log(action.payload);
       localStorage.setItem("profileEdit", action.payload);
       state.dataProfile = action.payload;
     },

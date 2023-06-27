@@ -7,7 +7,7 @@ import { ProfileNavbar } from "./ProfileNavbar";
 import { useSelector } from "react-redux";
 
 export const Navbar = () => {
-  const isLogin = useSelector((state) => state.changeModal.isLogin);
+  const isLogin = useSelector((state) => state.authUser.isLogin);
 
   return (
     <Flex

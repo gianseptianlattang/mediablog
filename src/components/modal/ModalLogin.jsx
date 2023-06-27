@@ -22,7 +22,8 @@ import { ButtonModal } from "./ButtonModal";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { closeFormModal, userLogin } from "../../service/reducer/userReducer";
+import { closeFormModal } from "../../service/reducer/userReducer";
+import { userLogin } from "../../service/reducer/authReducer";
 import axios from "axios";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";

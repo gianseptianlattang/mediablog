@@ -4,21 +4,22 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Toast,
   Wrap,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../service/reducer/userReducer";
 import { useNavigate } from "react-router-dom";
 import { profileEdit } from "../../service/reducer/profileReducer";
+import { userLogin } from "../../service/reducer/authReducer";
 
 export const ProfileNavbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const handleLogoutToast = () => {
-    Toast({
+    toast({
       description: "Successfully logged out",
       status: "success",
       duration: 2000,
@@ -28,9 +29,9 @@ export const ProfileNavbar = () => {
   };
   const logout = () => {
     navigate("/");
+    handleLogoutToast();
     localStorage.clear();
     dispatch(userLogin());
-    handleLogoutToast();
   };
 
   const editTrue = () => {
