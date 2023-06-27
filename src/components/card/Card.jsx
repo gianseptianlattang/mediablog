@@ -2,6 +2,7 @@ import {
   Button,
   Card,
   CardBody,
+  Center,
   Divider,
   Flex,
   Heading,
@@ -37,14 +38,19 @@ export const CardFrame = () => {
     return (
       <Card w={"350px"}>
         <CardBody>
-          <Image
-            src={`${baseUrl}${item.imageURL}`}
-            alt={item.title}
-            borderRadius="lg"
-          />
+          <Center>
+            <Image
+              src={`${baseUrl}${item.imageURL}`}
+              alt={item.title}
+              borderRadius="lg"
+              h={"200px"}
+              maxW={"full"}
+            />
+          </Center>
+
           <Stack mt="6" spacing="3">
             <Heading size="md">{item.title}</Heading>
-            <Text>{item.content}</Text>
+            <Text noOfLines={2}>{item.content}</Text>
           </Stack>
         </CardBody>
         <Divider />

@@ -1,10 +1,14 @@
 import { Flex, Spacer } from "@chakra-ui/react";
 import React from "react";
 import { SearchNavbar } from "./SearchNavbar";
-import { ButtonLinkNavbar, ButtonSolidNavbar } from "./ButtonNavbar";
+import { ButtonLinkNavbar, ButtonStartWriting } from "./ButtonNavbar";
 import { LogoNavbar } from "./LogoNavbar";
+import { ProfileNavbar } from "./ProfileNavbar";
+import { useSelector } from "react-redux";
 
 export const Navbar = () => {
+  const isLogin = useSelector((state) => state.changeModal.isLogin);
+
   return (
     <Flex
       minWidth="max-content"
@@ -20,10 +24,9 @@ export const Navbar = () => {
     >
       <LogoNavbar />
       <SearchNavbar />
-      <ButtonSolidNavbar />
+      <ButtonStartWriting />
       <Spacer />
-      <ButtonLinkNavbar modal="Sign In" />
-      <ButtonLinkNavbar modal="Sign Up" />
+      {isLogin ? <ProfileNavbar /> : <ButtonLinkNavbar />}
     </Flex>
   );
 };

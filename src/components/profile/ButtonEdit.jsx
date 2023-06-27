@@ -30,7 +30,7 @@ export const ButtonSave = () => {
 export const ButtonEdit = () => {
   const dispatch = useDispatch();
   const changeEdit = () => {
-    dispatch(profileEdit());
+    dispatch(profileEdit(true));
   };
   return (
     <Box>

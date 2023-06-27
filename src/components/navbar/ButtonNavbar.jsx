@@ -1,22 +1,26 @@
-import { Box, Button, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import { ModalLoginRegis } from "../modal/_ModalLoginRegist";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeFormModal, formModal } from "../../service/reducer/userReducer";
 
-export const ButtonSolidNavbar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const ButtonStartWriting = () => {
+  const isLogin = useSelector((state) => state.changeModal.isLogin);
+  const { isOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
 
   function openModalSignIn() {
-    onOpen();
     dispatch(formModal(true));
     dispatch(closeFormModal());
+  }
+
+  function login() {
+    console.log("login");
   }
   return (
     <Box>
       <Button
-        onClick={openModalSignIn}
+        onClick={isLogin ? login : openModalSignIn}
         borderRadius="full"
         colorScheme="blackAlpha"
         size="md"
@@ -28,39 +32,36 @@ export const ButtonSolidNavbar = () => {
   );
 };
 
-export const ButtonLinkNavbar = (props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const ButtonLinkNavbar = () => {
+  const { onClose } = useDisclosure();
   const dispatch = useDispatch();
 
   function openModalSignUp() {
-    onOpen();
     dispatch(formModal(false));
     dispatch(closeFormModal());
   }
 
   function openModalSignIn() {
-    onOpen();
     dispatch(formModal(true));
     dispatch(closeFormModal());
   }
 
-  if (props.modal === "Sign Up") {
-    return (
-      <Box>
-        <Button onClick={openModalSignUp} color="black" variant="link">
-          {props.modal}
-        </Button>
-        <ModalLoginRegis isOpen={isOpen} onClose={onClose} />
-      </Box>
-    );
-  } else if (props.modal === "Sign In") {
-    return (
-      <Box>
-        <Button onClick={openModalSignIn} color="black" variant="link">
-          {props.modal}
-        </Button>
-        <ModalLoginRegis isOpen={isOpen} onClose={onClose} />
-      </Box>
-    );
-  }
+  return (
+    <Box>
+      <Flex gap={5}>
+        <Box>
+          <Button onClick={openModalSignIn} color="black" variant="link">
+            Sign In
+          </Button>
+          <ModalLoginRegis onClose={onClose} />
+        </Box>
+        <Box>
+          <Button onClick={openModalSignUp} color="black" variant="link">
+            Sign Up
+          </Button>
+          <ModalLoginRegis onClose={onClose} />
+        </Box>
+      </Flex>
+    </Box>
+  );
 };

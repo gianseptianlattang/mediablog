@@ -42,7 +42,7 @@ export const CarouselFav = () => {
   return (
     <Box backgroundColor={"rgb(242, 77, 46)"} px={"300px"} py={"100px"}>
       <Heading size="xl" color="white" fontWeight={"bold"} p={3}>
-        Top 10 Articles..
+        Top Articles..
       </Heading>
       <Flex>
         <Box w={"80%"}>
@@ -59,6 +59,9 @@ export const CarouselFav = () => {
                   backgroundImage={`${baseUrl}${item.imageURL}`}
                   h={"600px"}
                   borderRadius={"50px"}
+                  bgRepeat={"no-repeat"}
+                  bgSize={"cover"}
+                  bgPos={"center"}
                 >
                   <Box
                     position="absolute"
@@ -66,15 +69,17 @@ export const CarouselFav = () => {
                     left="50px"
                     textAlign="left"
                     backgroundColor={"blackAlpha.600"}
-                    mr={"60px"}
                     px={"10px"}
                     pb={"5px"}
+                    w={"400px"}
                     borderRadius={"10px"}
                   >
                     <Heading size="lg" color="white">
                       {item.title}
                     </Heading>
-                    <Text color={"white"}>{item.content}</Text>
+                    <Text color={"white"} noOfLines={2}>
+                      {item.content}
+                    </Text>
                   </Box>
                 </Box>
               );

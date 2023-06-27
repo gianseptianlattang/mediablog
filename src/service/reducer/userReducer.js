@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   modalUser: false,
   closeModal: false,
+  isLogin: localStorage.getItem("tokenLogin"),
 };
 
 export const UserReducer = createSlice({
@@ -15,8 +16,13 @@ export const UserReducer = createSlice({
     closeFormModal: (state, action) => {
       state.closeModal = !state.closeModal;
     },
+    userLogin: (state, action) => {
+      localStorage.getItem("tokenLogin")
+        ? (state.isLogin = true)
+        : (state.isLogin = false);
+    },
   },
 });
 
-export const { formModal, closeFormModal } = UserReducer.actions;
+export const { formModal, closeFormModal, userLogin } = UserReducer.actions;
 export default UserReducer.reducer;

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dataProfile: false,
+  dataProfile: localStorage.getItem("profileEdit"),
 };
 
 export const ProfileReducer = createSlice({
@@ -9,6 +9,8 @@ export const ProfileReducer = createSlice({
   initialState,
   reducers: {
     profileEdit: (state, action) => {
+      console.log(action.payload);
+      localStorage.setItem("profileEdit", action.payload);
       state.dataProfile = action.payload;
     },
   },

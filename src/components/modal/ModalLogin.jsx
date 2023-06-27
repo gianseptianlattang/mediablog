@@ -15,13 +15,17 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ButtonModal } from "./ButtonModal";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { closeFormModal } from "../../service/reducer/userReducer";
+import { closeFormModal, userLogin } from "../../service/reducer/userReducer";
+import axios from "axios";
+
+const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
 const LoginSchema = Yup.object().shape({
   // username: Yup.string()
@@ -42,14 +46,36 @@ const LoginSchema = Yup.object().shape({
 });
 
 const fetchUser = async (values) => {
-  console.log(values);
+  try {
+    const { data } = await axios.post(`${baseUrl}api/auth/login`, values);
+    if (data.isAccountExist) {
+      localStorage.setItem("tokenLogin", data.token);
+      return "success";
+    }
+  } catch (err) {
+    console.log(err);
+    return "error";
+  }
 };
 
 export const ModalLogin = () => {
+  const toast = useToast();
   const dispatch = useDispatch();
+
+  const handleLoginToast = (props, content) => {
+    toast({
+      description: content,
+      status: props,
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
+  };
+
   function closeModal() {
     dispatch(closeFormModal());
   }
+
   const formik = useFormik({
     initialValues: {
       // username: "",
@@ -58,13 +84,16 @@ export const ModalLogin = () => {
       password: "",
     },
     validationSchema: LoginSchema,
-    onSubmit: (values) => {
-      fetchUser(values);
-      // localStorage.setItem("login", "true");
-      // dispatch(isLogin(localStorage.getItem("login")));
-      // console.log(localStorage.getItem("login"));
-      // onClose();
-      closeModal();
+
+    onSubmit: async (values) => {
+      const userToast = await fetchUser(values);
+      if (userToast === "success") {
+        handleLoginToast("success", "Successfully logged in");
+        dispatch(userLogin());
+        closeModal();
+      } else {
+        handleLoginToast("error", "Failed to logged in");
+      }
     },
   });
 

@@ -39,6 +39,8 @@ export const CategoryBlog = () => {
           if (data[0] === i + 1) {
             imageCategory[i] = data[1];
             break;
+          } else {
+            imageCategory[i] = "Public/Blog-1687614498279581220.jpeg";
           }
         }
       }
@@ -73,6 +75,8 @@ export const CategoryBlog = () => {
           colSpan={3}
           backgroundImage={`${baseUrl}${dataImage[0]}`}
           boxShadow={"xl"}
+          bgRepeat={"no-repeat"}
+          bgSize={"cover"}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -89,6 +93,9 @@ export const CategoryBlog = () => {
           colSpan={3}
           backgroundImage={`${baseUrl}${dataImage[1]}`}
           boxShadow={"xl"}
+          bgRepeat={"no-repeat"}
+          bgSize={"cover"}
+          bgPos={"center"}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -105,6 +112,8 @@ export const CategoryBlog = () => {
           colSpan={2}
           backgroundImage={`${baseUrl}${dataImage[2]}`}
           boxShadow={"xl"}
+          bgRepeat={"no-repeat"}
+          bgSize={"cover"}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -121,6 +130,8 @@ export const CategoryBlog = () => {
           colSpan={2}
           backgroundImage={`${baseUrl}${dataImage[3]}`}
           boxShadow={"xl"}
+          bgRepeat={"no-repeat"}
+          bgSize={"cover"}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -137,6 +148,8 @@ export const CategoryBlog = () => {
           colSpan={2}
           backgroundImage={`${baseUrl}${dataImage[4]}`}
           boxShadow={"xl"}
+          bgRepeat={"no-repeat"}
+          bgSize={"cover"}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -153,6 +166,8 @@ export const CategoryBlog = () => {
           colSpan={3}
           backgroundImage={`${baseUrl}${dataImage[5]}`}
           boxShadow={"xl"}
+          bgRepeat={"no-repeat"}
+          bgSize={"cover"}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -169,6 +184,8 @@ export const CategoryBlog = () => {
           colSpan={3}
           backgroundImage={`${baseUrl}${dataImage[6]}`}
           boxShadow={"xl"}
+          bgRepeat={"no-repeat"}
+          bgSize={"cover"}
         >
           <Box
             backgroundColor={"blackAlpha.600"}

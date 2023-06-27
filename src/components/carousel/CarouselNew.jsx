@@ -6,7 +6,6 @@ import {
   Heading,
   Image,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -48,7 +47,7 @@ export const CarouselNew = () => {
         fontWeight={"bold"}
         color={"white"}
       >
-        New Article..
+        New Articles..
       </Heading>
       <Box px={"60px"}>
         <Slider {...settings}>
@@ -66,10 +65,9 @@ export const CarouselNew = () => {
                     />
                   </Center>
                   <Stack>
-                    <Heading color={"white"} size="md">
+                    <Heading color={"white"} size="md" noOfLines={2}>
                       {item.title}
                     </Heading>
-                    <Text color={"white"}>{item.description}</Text>
                   </Stack>
                 </CardBody>
               </Card>

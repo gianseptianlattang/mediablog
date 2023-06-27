@@ -1,7 +1,7 @@
 import { Box, Button } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { closeFormModal, formModal } from "../../service/reducer/userReducer";
+import { formModal } from "../../service/reducer/userReducer";
 
 export const ButtonModal = (props) => {
   const dispatch = useDispatch();
@@ -31,16 +31,4 @@ export const ButtonModal = (props) => {
       </Box>
     );
   }
-};
-
-export const ButtonClose = () => {
-  const dispatch = useDispatch();
-  const closeButton = () => {
-    dispatch(closeFormModal());
-  };
-  return (
-    <Box>
-      <Button onClick={closeButton}>X</Button>
-    </Box>
-  );
 };

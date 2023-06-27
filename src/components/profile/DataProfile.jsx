@@ -4,8 +4,11 @@ import { ButtonEdit, ButtonSave } from "./ButtonEdit";
 import { useSelector } from "react-redux";
 
 export const DataProfile = () => {
-  const edit = useSelector((state) => state.changeProfileEdit.dataProfile);
-
+  const edit = useSelector((state) =>
+    JSON.parse(state.changeProfileEdit.dataProfile)
+  );
+  console.log(`edit ${edit}`);
+  console.log(`test ${typeof edit}`);
   return (
     <Box>
       <Grid
