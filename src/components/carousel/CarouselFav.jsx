@@ -2,15 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {
-  Box,
-  Center,
-  Flex,
-  Heading,
-  IconButton,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, IconButton, Image, Text } from "@chakra-ui/react";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import axios from "axios";
 
@@ -45,7 +37,7 @@ export const CarouselFav = () => {
         Top Articles..
       </Heading>
       <Flex>
-        <Box w={"80%"}>
+        <Box w={"70%"}>
           <Slider
             arrows={false}
             asNavFor={nav2}
@@ -86,7 +78,7 @@ export const CarouselFav = () => {
             })}
           </Slider>
         </Box>
-        <Box w={"20%"} py={1}>
+        <Box w={"30%"} py={1}>
           {/* Up Icon */}
           <IconButton
             aria-label="up-arrow"
@@ -118,16 +110,42 @@ export const CarouselFav = () => {
           >
             {fav.map((item) => {
               return (
-                <Box>
-                  <Center>
+                <Box pl={"30px"}>
+                  <Flex
+                    gap={"10px"}
+                    transition="0.2s ease-in-out"
+                    _hover={{
+                      transform: "scale(1.07)",
+                    }}
+                  >
                     <Image
-                      w={"180px"}
+                      w={"45%"}
                       h={"120px"}
                       src={`${baseUrl}${item.imageURL}`}
                       alt={item.title}
                       borderRadius="lg"
                     />
-                  </Center>
+                    <Box py={"15px"}>
+                      <Text
+                        fontSize="md"
+                        color="black"
+                        noOfLines={2}
+                        textAlign={"left"}
+                        fontWeight={"bold"}
+                      >
+                        {item.title}
+                      </Text>
+                      <Text
+                        fontSize="sm"
+                        color="blackAlpha.700"
+                        noOfLines={2}
+                        textAlign={"left"}
+                        fontWeight={"bold"}
+                      >
+                        {item.User.username}
+                      </Text>
+                    </Box>
+                  </Flex>
                 </Box>
               );
             })}

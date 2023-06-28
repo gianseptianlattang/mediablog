@@ -59,7 +59,7 @@ export const CategoryBlog = () => {
     <Box px={"300px"} py={"50px"} backgroundColor={"#FCD19C"}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
         <Heading size="xl" fontWeight={"bold"}>
-          Category..
+          Categories..
         </Heading>
       </Stack>
 
@@ -77,9 +77,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          borderRadius={"10px"}
+          transition="0.3s ease-in-out"
           _hover={{
             transform: "scale(1.07)",
-            transition: "all 1s",
           }}
         >
           <Box
@@ -100,9 +101,10 @@ export const CategoryBlog = () => {
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
           bgPos={"center"}
+          borderRadius={"10px"}
+          transition="0.3s ease-in-out"
           _hover={{
             transform: "scale(1.07)",
-            transition: "all 1s",
           }}
         >
           <Box
@@ -122,9 +124,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          borderRadius={"10px"}
+          transition="0.3s ease-in-out"
           _hover={{
             transform: "scale(1.07)",
-            transition: "all 1s",
           }}
         >
           <Box
@@ -144,9 +147,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          borderRadius={"10px"}
+          transition="0.3s ease-in-out"
           _hover={{
             transform: "scale(1.07)",
-            transition: "all 1s",
           }}
         >
           <Box
@@ -166,9 +170,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          borderRadius={"10px"}
+          transition="0.3s ease-in-out"
           _hover={{
             transform: "scale(1.07)",
-            transition: "all 1s",
           }}
         >
           <Box
@@ -188,9 +193,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          borderRadius={"10px"}
+          transition="0.3s ease-in-out"
           _hover={{
             transform: "scale(1.07)",
-            transition: "all 1s",
           }}
         >
           <Box
@@ -210,9 +216,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          borderRadius={"10px"}
+          transition="0.3s ease-in-out"
           _hover={{
             transform: "scale(1.07)",
-            transition: "all 1s",
           }}
         >
           <Box
