@@ -35,14 +35,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   useEffect(() => {
-    console.log(`idCategory ${idCategory}`);
     handlePageChange(1);
   }, [idCategory]);
 
   const handlePageChange = (page) => {
     if (typeof page === "number") {
       onPageChange(page);
-      console.log(idCategory, page);
       dispatch(
         fetchCard(
           idCategory == 0

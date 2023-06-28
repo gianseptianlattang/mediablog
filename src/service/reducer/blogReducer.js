@@ -52,7 +52,6 @@ export const BlogReducer = createSlice({
 export const fetchCard = (targetUrl) => {
   return async (dispatch) => {
     try {
-      console.log(targetUrl);
       const res = await axios.get(`${baseUrl}${targetUrl}`);
       const data = res.data;
       dispatch(addDataBlog(data));

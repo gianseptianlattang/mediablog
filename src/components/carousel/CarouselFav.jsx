@@ -118,14 +118,16 @@ export const CarouselFav = () => {
                       transform: "scale(1.07)",
                     }}
                   >
-                    <Image
-                      w={"45%"}
-                      h={"120px"}
-                      src={`${baseUrl}${item.imageURL}`}
-                      alt={item.title}
-                      borderRadius="lg"
-                    />
-                    <Box py={"15px"}>
+                    <Box w={"180px"}>
+                      <Image
+                        h={"120px"}
+                        src={`${baseUrl}${item.imageURL}`}
+                        alt={item.title}
+                        borderRadius="lg"
+                        w="180px"
+                      />
+                    </Box>
+                    <Box w="160px" py={"15px"}>
                       <Text
                         fontSize="md"
                         color="black"
