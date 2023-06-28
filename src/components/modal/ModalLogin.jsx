@@ -29,15 +29,7 @@ import axios from "axios";
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
 const LoginSchema = Yup.object().shape({
-  // username: Yup.string()
-  //   .required("Email is required")
-  //   .email("Invalid email address format"),
-  email: Yup.string()
-    .required("Email is required")
-    .email("Invalid email address format"),
-  // phone: Yup.string()
-  //   .required("Email is required")
-  //   .email("Invalid email address format"),
+  loginInput: Yup.string().required("Username/Email/Phone is required"),
   password: Yup.string()
     .required("Password is required")
     .min(6, "Password must have at least 6 characters")
@@ -79,15 +71,14 @@ export const ModalLogin = () => {
 
   const formik = useFormik({
     initialValues: {
-      // username: "",
-      email: "",
-      // phone: "",
+      loginInput: "",
       password: "",
     },
     validationSchema: LoginSchema,
-
     onSubmit: async (values) => {
-      const userToast = await fetchUser(values);
+      let request = inputType(values.loginInput);
+      console.log(request);
+      const userToast = await fetchUser(request);
       if (userToast[0] === "success") {
         handleLoginToast("success", "Successfully logged in");
         dispatch(setUser(userToast[1].isAccountExist));
@@ -100,6 +91,24 @@ export const ModalLogin = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+
+  function inputType(req) {
+    if (req.match(/^(\+62|62|0)8[1-9][0-9]/))
+      return {
+        phone: formik.values.loginInput,
+        password: formik.values.password,
+      };
+    if (req.match(/^[\w\.]+@\w+\.\w{2,3}/))
+      return {
+        email: formik.values.loginInput,
+        password: formik.values.password,
+      };
+    return {
+      username: formik.values.loginInput,
+      password: formik.values.password,
+    };
+  }
+
   return (
     <Box>
       <ModalHeader>Sign in your account</ModalHeader>
@@ -127,18 +136,22 @@ export const ModalLogin = () => {
               >
                 <Stack spacing={4}>
                   <FormControl
-                    isInvalid={formik.touched.email && formik.errors.email}
+                    isInvalid={
+                      formik.touched.loginInput && formik.errors.loginInput
+                    }
                   >
                     <FormLabel>Username/Email/Phone</FormLabel>
                     <Input
-                      id="email"
-                      type="email"
+                      id="loginInput"
+                      type="text"
                       placeholder="username/email/phone"
                       onChange={formik.handleChange}
-                      value={formik.values.email}
+                      value={formik.values.loginInput}
                     />
-                    {formik.touched.email && formik.errors.email && (
-                      <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+                    {formik.touched.loginInput && formik.errors.loginInput && (
+                      <FormErrorMessage>
+                        {formik.errors.loginInput}
+                      </FormErrorMessage>
                     )}
                   </FormControl>
                   <FormControl
