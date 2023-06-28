@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Pagination from "./Pagination";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const PaginationCard = () => {
-  const dispatch = useDispatch();
+  const dataPage = useSelector((state) => state.blogUser.pageBlog);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Replace with the total number of pages in your data
+  const totalPages = dataPage.page;
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
-  useEffect(() => {});
 
   return (
     <div>

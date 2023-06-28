@@ -71,10 +71,10 @@ export const CarouselFav = () => {
                     backgroundColor={"blackAlpha.600"}
                     px={"10px"}
                     pb={"5px"}
-                    w={"400px"}
+                    w={"600px"}
                     borderRadius={"10px"}
                   >
-                    <Heading size="lg" color="white">
+                    <Heading size="lg" color="white" noOfLines={1}>
                       {item.title}
                     </Heading>
                     <Text color={"white"} noOfLines={2}>

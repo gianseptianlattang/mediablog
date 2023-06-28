@@ -9,7 +9,7 @@ export const HomePage = () => {
     <Box>
       <Carousel />
       <Category />
-      <CardShow />
+      <CardShow name={"All Category.."} />
     </Box>
   );
 };

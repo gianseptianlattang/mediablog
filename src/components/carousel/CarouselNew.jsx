@@ -42,11 +42,7 @@ export const CarouselNew = () => {
   };
   return (
     <Box backgroundColor={"black"} pt={"20px"}>
-      <Heading
-        fontSize={{ base: "2xl", sm: "4xl" }}
-        fontWeight={"bold"}
-        color={"white"}
-      >
+      <Heading size="xl" color="white" fontWeight={"bold"}>
         New Articles..
       </Heading>
       <Box px={"60px"}>
@@ -65,7 +61,7 @@ export const CarouselNew = () => {
                     />
                   </Center>
                   <Stack>
-                    <Heading color={"white"} size="md" noOfLines={2}>
+                    <Heading color={"white"} size="md" noOfLines={1}>
                       {item.title}
                     </Heading>
                   </Stack>

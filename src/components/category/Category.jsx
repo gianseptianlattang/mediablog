@@ -58,7 +58,7 @@ export const CategoryBlog = () => {
   return (
     <Box px={"300px"} py={"50px"} backgroundColor={"#FCD19C"}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"}>
+        <Heading size="xl" fontWeight={"bold"}>
           Category..
         </Heading>
       </Stack>
@@ -77,6 +77,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          _hover={{
+            transform: "scale(1.07)",
+            transition: "all 1s",
+          }}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -96,6 +100,10 @@ export const CategoryBlog = () => {
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
           bgPos={"center"}
+          _hover={{
+            transform: "scale(1.07)",
+            transition: "all 1s",
+          }}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -114,6 +122,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          _hover={{
+            transform: "scale(1.07)",
+            transition: "all 1s",
+          }}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -132,6 +144,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          _hover={{
+            transform: "scale(1.07)",
+            transition: "all 1s",
+          }}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -150,6 +166,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          _hover={{
+            transform: "scale(1.07)",
+            transition: "all 1s",
+          }}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -168,6 +188,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          _hover={{
+            transform: "scale(1.07)",
+            transition: "all 1s",
+          }}
         >
           <Box
             backgroundColor={"blackAlpha.600"}
@@ -186,6 +210,10 @@ export const CategoryBlog = () => {
           boxShadow={"xl"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
+          _hover={{
+            transform: "scale(1.07)",
+            transition: "all 1s",
+          }}
         >
           <Box
             backgroundColor={"blackAlpha.600"}

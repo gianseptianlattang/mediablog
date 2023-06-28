@@ -1,7 +1,10 @@
 import React from "react";
-import { Box, Button, ButtonGroup, Text } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { changePage } from "../../service/reducer/blogReducer";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const dispatch = useDispatch();
   const getPageNumbers = () => {
     const delta = 1;
     const range = [];
@@ -30,14 +33,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePageChange = (page) => {
     if (typeof page === "number") {
       onPageChange(page);
+      dispatch(changePage(page));
     }
   };
 
   return (
     <Box>
-      <ButtonGroup spacing={2}>
+      <ButtonGroup spacing={1} colorScheme="orange">
         {currentPage !== 1 && (
           <Button
+            fontSize={"sm"}
+            w={"100px"}
             variant="outline"
             onClick={() => handlePageChange(currentPage - 1)}
           >
@@ -46,6 +52,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         )}
         {getPageNumbers().map((page, index) => (
           <Button
+            fontSize={"sm"}
             key={index}
             variant={currentPage === page ? "solid" : "outline"}
             onClick={() => handlePageChange(page)}
@@ -55,6 +62,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         ))}
         {currentPage !== totalPages && (
           <Button
+            fontSize={"sm"}
+            w={"100px"}
             variant="outline"
             onClick={() => handlePageChange(currentPage + 1)}
           >
@@ -62,9 +71,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           </Button>
         )}
       </ButtonGroup>
-      <Text fontSize="sm" textAlign="center" mt={2}>
-        Page {currentPage} of {totalPages}
-      </Text>
     </Box>
   );
 };

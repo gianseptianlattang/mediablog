@@ -3,11 +3,11 @@ import { CardFrame } from "./Card";
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { PaginationCard } from "../pagination/_Pagination";
 
-export const CardShow = () => {
+export const CardShow = (categroy) => {
   return (
     <Box px={"150px"} py={"40px"}>
-      <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"}>
-        All Category..
+      <Heading size="xl" fontWeight={"bold"}>
+        {categroy.name}
       </Heading>
       <SimpleGrid columns={4} spacing={10} justifyItems={"center"} p={5}>
         <CardFrame />

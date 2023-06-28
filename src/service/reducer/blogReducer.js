@@ -1,13 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  requestBlog: {
-    id_cat: 0,
+  requestBlogAllCategory: {
     sort: "DESC",
-    page: 0,
-    search: 0,
+    page: 1,
     sortBy: "createdAt",
-    size: 0,
+    size: 12,
   },
   pageBlog: {
     page: 0,
@@ -23,10 +21,20 @@ export const BlogReducer = createSlice({
   initialState,
   reducers: {
     addDataBlog: (state, action) => {
-      state.pageBlog = action.payload;
+      const { page, rows, blogPage, listLimit, result } = action.payload;
+      state.pageBlog = {
+        page,
+        rows,
+        blogPage,
+        listLimit,
+        result,
+      };
+    },
+    changePage: (state, action) => {
+      state.requestBlogAllCategory.page = action.payload;
     },
   },
 });
 
-export const { profileEdit } = BlogReducer.actions;
+export const { addDataBlog, changePage } = BlogReducer.actions;
 export default BlogReducer.reducer;
