@@ -1,7 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
 const initialState = {
   requestBlogAllCategory: {
+    sort: "DESC",
+    page: 1,
+    sortBy: "createdAt",
+    size: 12,
+  },
+  requestBlogByCategory: {
+    id_cat: 0,
     sort: "DESC",
     page: 1,
     sortBy: "createdAt",
@@ -33,8 +43,28 @@ export const BlogReducer = createSlice({
     changePage: (state, action) => {
       state.requestBlogAllCategory.page = action.payload;
     },
+    changeCategory: (state, action) => {
+      state.requestBlogByCategory.id_cat = action.payload;
+    },
+    setCard: (state, action) => {
+      state.requestBlogByCategory.id_cat = action.payload;
+    },
   },
 });
 
-export const { addDataBlog, changePage } = BlogReducer.actions;
+// const fetchCard = () => {
+//   return async (dispatch) => {
+//     try {
+//       const res = await axios.get(`${baseUrl}${targetUrl}`);
+//       const data = res.data;
+//       dispatch(setCard(data.result));
+//       dispatch(addDataBlog(data));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
+
+export const { addDataBlog, changePage, changeCategory, setCard } =
+  BlogReducer.actions;
 export default BlogReducer.reducer;
