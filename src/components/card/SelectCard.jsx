@@ -2,20 +2,27 @@ import { Box, Center, Flex, Select, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../../service/reducer/categoryReducer";
+import { changeCategory, fetchCard } from "../../service/reducer/blogReducer";
 
 export const SelectCard = () => {
   const [idCategory, setCategory] = useState(0);
-  console.log(idCategory);
   const dispatch = useDispatch();
   const { dataCategory } = useSelector((state) => state.dataCategory);
+  let cat = "";
 
   useEffect(() => {
-    console.log("useEffect");
     dispatch(fetchCategory());
   }, []);
 
+  if (idCategory === "0") {
+    cat = "";
+  } else {
+    cat = `id_cat=${idCategory}&`;
+  }
+
   useEffect(() => {
-    console.log("useEffect");
+    dispatch(changeCategory(idCategory));
+    dispatch(fetchCard(`api/blog?${cat}sort=DESC&page=1&size=12`));
   }, [idCategory]);
 
   function handleSelectValue(event) {

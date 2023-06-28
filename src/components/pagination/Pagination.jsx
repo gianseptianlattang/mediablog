@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, ButtonGroup } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
-import { changePage } from "../../service/reducer/blogReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCard } from "../../service/reducer/blogReducer";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const dispatch = useDispatch();
+  const idCategory = useSelector(
+    (state) => state.blogUser.requestBlogByCategory.id_cat
+  );
+
   const getPageNumbers = () => {
     const delta = 1;
     const range = [];
@@ -30,10 +34,22 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     return range;
   };
 
+  useEffect(() => {
+    console.log(`idCategory ${idCategory}`);
+    handlePageChange(1);
+  }, [idCategory]);
+
   const handlePageChange = (page) => {
     if (typeof page === "number") {
       onPageChange(page);
-      dispatch(changePage(page));
+      console.log(idCategory, page);
+      dispatch(
+        fetchCard(
+          idCategory == 0
+            ? `api/blog?sort=DESC&page=${page}&size=12`
+            : `api/blog?id_cat=${idCategory}&sort=DESC&page=${page}&size=12`
+        )
+      );
     }
   };
 

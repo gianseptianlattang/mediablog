@@ -46,24 +46,21 @@ export const BlogReducer = createSlice({
     changeCategory: (state, action) => {
       state.requestBlogByCategory.id_cat = action.payload;
     },
-    setCard: (state, action) => {
-      state.requestBlogByCategory.id_cat = action.payload;
-    },
   },
 });
 
-// const fetchCard = () => {
-//   return async (dispatch) => {
-//     try {
-//       const res = await axios.get(`${baseUrl}${targetUrl}`);
-//       const data = res.data;
-//       dispatch(setCard(data.result));
-//       dispatch(addDataBlog(data));
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// };
+export const fetchCard = (targetUrl) => {
+  return async (dispatch) => {
+    try {
+      console.log(targetUrl);
+      const res = await axios.get(`${baseUrl}${targetUrl}`);
+      const data = res.data;
+      dispatch(addDataBlog(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 export const { addDataBlog, changePage, changeCategory, setCard } =
   BlogReducer.actions;
