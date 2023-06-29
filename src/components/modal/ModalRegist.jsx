@@ -24,8 +24,10 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { closeFormModal } from "../../service/reducer/userReducer";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const phoneRegExp = /^(\+62|62|0)8[1-9][0-9]/;
+const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
 const RegistSchema = Yup.object().shape({
   username: Yup.string()
@@ -49,6 +51,19 @@ const RegistSchema = Yup.object().shape({
     .required("Confirm password is required")
     .oneOf([Yup.ref("password")], "Confirm Password is not match"),
 });
+
+const fetchUser = async (values) => {
+  try {
+    const { data } = await axios.post(`${baseUrl}api/auth/`, values);
+    if (data.token) {
+      localStorage.setItem("tokenRegist", data.token);
+      return ["success", data];
+    }
+  } catch (err) {
+    console.log(err);
+    return "error";
+  }
+};
 
 export const ModalRegist = () => {
   console.log("test");
@@ -81,7 +96,15 @@ export const ModalRegist = () => {
     },
     validationSchema: RegistSchema,
     onSubmit: async (values) => {
-      console.log(values);
+      const userToast = await fetchUser(values);
+      if (userToast[0] === "success") {
+        handleLoginToast("success", "Account successfully created");
+        // dispatch(setUser(userToast[1].isAccountExist));
+        // dispatch(userLogin());
+        closeModal();
+      } else {
+        handleLoginToast("error", "Failed to create account");
+      }
       // closeModal();
     },
   });
@@ -89,7 +112,7 @@ export const ModalRegist = () => {
     <Box>
       <ModalHeader>Create your account</ModalHeader>
       <ModalBody pb={5}>
-        <form>
+        <form onSubmit={formik.handleSubmit}>
           <Flex
             align={"center"}
             justify={"center"}
@@ -136,7 +159,7 @@ export const ModalRegist = () => {
                     <FormLabel>Email</FormLabel>
                     <Input
                       id="email"
-                      type="email"
+                      type="text"
                       placeholder="test@test.com"
                       onChange={formik.handleChange}
                       value={formik.values.email}
@@ -152,7 +175,7 @@ export const ModalRegist = () => {
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="085123456xxx"
+                      placeholder="085xxxxxxxx"
                       onChange={formik.handleChange}
                       value={formik.values.phone}
                     />
@@ -186,6 +209,11 @@ export const ModalRegist = () => {
                         </Button>
                       </InputRightElement>
                     </InputGroup>
+                    {formik.touched.password && formik.errors.password && (
+                      <FormErrorMessage>
+                        {formik.errors.password}
+                      </FormErrorMessage>
+                    )}
                   </FormControl>
                   <FormControl
                     isInvalid={
@@ -216,13 +244,15 @@ export const ModalRegist = () => {
                         </Button>
                       </InputRightElement>
                     </InputGroup>
+                    {formik.touched.confirmPassword &&
+                      formik.errors.confirmPassword && (
+                        <FormErrorMessage>
+                          {formik.errors.confirmPassword}
+                        </FormErrorMessage>
+                      )}
                   </FormControl>
                   <Stack spacing={10} pt={2}>
-                    <Button
-                      width="full"
-                      colorScheme="blue"
-                      onClick={console.log("clicktest")}
-                    >
+                    <Button type="submit" width="full" colorScheme="blue">
                       Sign up
                     </Button>
                   </Stack>

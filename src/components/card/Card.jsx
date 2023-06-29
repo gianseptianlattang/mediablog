@@ -30,14 +30,14 @@ export const CardFrame = () => {
   if (result.length !== 0) {
     return result.map((item) => {
       return (
-        <Card w={"350px"} h={"450px"}>
+        <Card w={"350px"} h={"400px"}>
           <CardBody>
             <Center>
               <Image
                 src={`${baseUrl}${item.imageURL}`}
                 alt={item.title}
                 borderRadius="lg"
-                h={"200px"}
+                h={"150px"}
                 maxW={"full"}
               />
             </Center>

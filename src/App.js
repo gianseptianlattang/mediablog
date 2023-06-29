@@ -5,6 +5,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { Navbar } from "./components/navbar/_Navbar";
 import Auth from "./components/auth/Auth";
 import { CategoryPage } from "./pages/CategoryPage";
+import { AdminPage } from "./pages/AdminPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="/category" element={<CategoryPage />}></Route>
+          <Route path="/admin" element={<AdminPage />}></Route>
         </Routes>
       </Auth>
     </div>

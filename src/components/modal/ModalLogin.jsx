@@ -25,6 +25,7 @@ import { useDispatch } from "react-redux";
 import { closeFormModal } from "../../service/reducer/userReducer";
 import { setUser, userLogin } from "../../service/reducer/authReducer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
@@ -55,6 +56,7 @@ export const ModalLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLoginToast = (props, content) => {
     toast({
@@ -78,9 +80,17 @@ export const ModalLogin = () => {
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
       let request = inputType(values.loginInput);
-      console.log(request);
       const userToast = await fetchUser(request);
-      if (userToast[0] === "success") {
+      if (
+        userToast[0] === "success" &&
+        userToast[1].isAccountExist.username === "admingian"
+      ) {
+        handleLoginToast("success", "Admin successfully logged in");
+        dispatch(setUser(userToast[1].isAccountExist));
+        dispatch(userLogin());
+        closeModal();
+        navigate("/admin");
+      } else if (userToast[0] === "success") {
         handleLoginToast("success", "Successfully logged in");
         dispatch(setUser(userToast[1].isAccountExist));
         dispatch(userLogin());
