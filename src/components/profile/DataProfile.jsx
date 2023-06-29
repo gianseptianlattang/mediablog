@@ -13,10 +13,10 @@ export const DataProfile = () => {
   return (
     <Box>
       <Grid
-        mt={"100px"}
-        mx={"50px"}
-        p={"50px"}
-        templateRows="repeat(5, 1fr)"
+        mt={"50px"}
+        mx={"60px"}
+        p={"40px"}
+        templateRows="repeat(4, 1fr)"
         templateColumns="repeat(4, 1fr)"
         gap={"70px"}
         borderRadius={"10px"}
@@ -94,8 +94,8 @@ export const DataProfile = () => {
             </Text>
           )}
         </GridItem>
-        <GridItem colSpan={2}>
-          {edit ? <Button colorScheme="teal">Reset Password</Button> : <></>}
+        <GridItem colSpan={1}>
+          <Button colorScheme="teal">Reset Password</Button>
         </GridItem>
       </Grid>
       {edit ? <ButtonSave /> : <ButtonEdit />}
