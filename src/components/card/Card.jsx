@@ -17,6 +17,7 @@ import { FcLike } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCard } from "../../service/reducer/blogReducer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
@@ -26,6 +27,7 @@ export const CardFrame = () => {
   const targetUrl = "api/blog?&sort=DESC&page=1&size=12";
   const token = localStorage.getItem("tokenLogin");
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleLoginToast = (props, content) => {
     toast({
@@ -88,7 +90,11 @@ export const CardFrame = () => {
           <Divider />
 
           <Flex p={"30px"} justifyContent="space-between">
-            <Button variant="solid" colorScheme="orange">
+            <Button
+              onClick={() => navigate("/detail")}
+              variant="solid"
+              colorScheme="orange"
+            >
               Read More
             </Button>
             <Spacer />

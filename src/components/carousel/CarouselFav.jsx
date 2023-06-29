@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Box, Flex, Heading, IconButton, Image, Text } from "@chakra-ui/react";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
@@ -49,33 +50,35 @@ export const CarouselFav = () => {
           >
             {fav.map((item) => {
               return (
-                <Box
-                  backgroundImage={`${baseUrl}${item.imageURL}`}
-                  h={"600px"}
-                  borderRadius={"50px"}
-                  bgRepeat={"no-repeat"}
-                  bgSize={"cover"}
-                  bgPos={"center"}
-                >
+                <Link to={"/detail"}>
                   <Box
-                    position="absolute"
-                    bottom="50px"
-                    left="50px"
-                    textAlign="left"
-                    backgroundColor={"blackAlpha.600"}
-                    px={"10px"}
-                    pb={"5px"}
-                    w={"600px"}
-                    borderRadius={"10px"}
+                    backgroundImage={`${baseUrl}${item.imageURL}`}
+                    h={"600px"}
+                    borderRadius={"50px"}
+                    bgRepeat={"no-repeat"}
+                    bgSize={"cover"}
+                    bgPos={"center"}
                   >
-                    <Heading size="lg" color="white" noOfLines={1}>
-                      {item.title}
-                    </Heading>
-                    <Text color={"white"} noOfLines={2}>
-                      {item.content}
-                    </Text>
+                    <Box
+                      position="absolute"
+                      bottom="50px"
+                      left="50px"
+                      textAlign="left"
+                      backgroundColor={"blackAlpha.600"}
+                      px={"10px"}
+                      pb={"5px"}
+                      w={"600px"}
+                      borderRadius={"10px"}
+                    >
+                      <Heading size="lg" color="white" noOfLines={1}>
+                        {item.title}
+                      </Heading>
+                      <Text color={"white"} noOfLines={2}>
+                        {item.content}
+                      </Text>
+                    </Box>
                   </Box>
-                </Box>
+                </Link>
               );
             })}
           </Slider>

@@ -8,6 +8,7 @@ import { CategoryPage } from "./pages/CategoryPage";
 import { AdminPage } from "./pages/AdminPage";
 import { LikedPage } from "./pages/LikedPage";
 import { CreatePage } from "./pages/CreatePage";
+import { DetailPage } from "./pages/DetailPage";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route path="/category" element={<CategoryPage />}></Route>
           <Route path="/admin" element={<AdminPage />}></Route>
           <Route path="/liked" element={<LikedPage />}></Route>
-          <Route path="/write" element={<CreatePage />}></Route>
+          <Route path="/create" element={<CreatePage />}></Route>
+          <Route path="/detail" element={<DetailPage />}></Route>
         </Routes>
       </Auth>
     </div>

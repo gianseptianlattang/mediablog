@@ -3,11 +3,13 @@ import React from "react";
 import { ModalLoginRegis } from "../modal/_ModalLoginRegist";
 import { useDispatch, useSelector } from "react-redux";
 import { closeFormModal, formModal } from "../../service/reducer/userReducer";
+import { useNavigate } from "react-router-dom";
 
 export const ButtonStartWriting = () => {
   const isLogin = useSelector((state) => state.authUser.isLogin);
   const { isOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function openModalSignIn() {
     dispatch(formModal(true));
@@ -15,7 +17,7 @@ export const ButtonStartWriting = () => {
   }
 
   function login() {
-    console.log("test login");
+    navigate("/create");
   }
   return (
     <Box>

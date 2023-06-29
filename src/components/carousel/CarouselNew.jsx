@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
@@ -50,22 +51,30 @@ export const CarouselNew = () => {
           {newBlog.map((item) => {
             return (
               <Card>
-                <CardBody backgroundColor={"black"}>
-                  <Center>
-                    <Image
-                      w={"200px"}
-                      h={"150px"}
-                      src={`${baseUrl}${item.imageURL}`}
-                      alt={item.title}
-                      borderRadius="lg"
-                    />
-                  </Center>
-                  <Stack>
-                    <Heading color={"white"} size="md" noOfLines={1}>
-                      {item.title}
-                    </Heading>
-                  </Stack>
-                </CardBody>
+                <Link to={"/detail"}>
+                  <CardBody
+                    backgroundColor={"black"}
+                    transition="0.2s ease-in-out"
+                    _hover={{
+                      transform: "scale(1.07)",
+                    }}
+                  >
+                    <Center>
+                      <Image
+                        w={"200px"}
+                        h={"150px"}
+                        src={`${baseUrl}${item.imageURL}`}
+                        alt={item.title}
+                        borderRadius="lg"
+                      />
+                    </Center>
+                    <Stack>
+                      <Heading color={"white"} size="md" noOfLines={1}>
+                        {item.title}
+                      </Heading>
+                    </Stack>
+                  </CardBody>
+                </Link>
               </Card>
             );
           })}

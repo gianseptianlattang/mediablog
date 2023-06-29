@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem, Input, Text } from "@chakra-ui/react";
 import React from "react";
 import { ButtonEdit, ButtonSave } from "./ButtonEdit";
 import { useSelector } from "react-redux";
@@ -16,7 +16,7 @@ export const DataProfile = () => {
         mt={"100px"}
         mx={"50px"}
         p={"50px"}
-        templateRows="repeat(3, 1fr)"
+        templateRows="repeat(5, 1fr)"
         templateColumns="repeat(4, 1fr)"
         gap={"70px"}
         borderRadius={"10px"}
@@ -93,6 +93,9 @@ export const DataProfile = () => {
               : {phone}
             </Text>
           )}
+        </GridItem>
+        <GridItem colSpan={2}>
+          {edit ? <Button colorScheme="teal">Reset Password</Button> : <></>}
         </GridItem>
       </Grid>
       {edit ? <ButtonSave /> : <ButtonEdit />}
