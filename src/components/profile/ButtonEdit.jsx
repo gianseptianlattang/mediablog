@@ -11,13 +11,13 @@ export const ButtonSave = () => {
   return (
     <Box>
       <Flex gap={5} justifyContent={"center"}>
-        <Button my={"150px"} w={"100px"} colorScheme="blue">
+        <Button my={"100px"} w={"100px"} colorScheme="teal">
           Save
         </Button>
         <Button
-          my={"150px"}
+          my={"100px"}
           w={"100px"}
-          colorScheme="blue"
+          colorScheme="teal"
           onClick={cancelEdit}
         >
           Cancel
@@ -34,7 +34,7 @@ export const ButtonEdit = () => {
   };
   return (
     <Box>
-      <Button my={"150px"} w={"100px"} colorScheme="blue" onClick={changeEdit}>
+      <Button my={"100px"} w={"100px"} colorScheme="teal" onClick={changeEdit}>
         Edit
       </Button>
     </Box>
