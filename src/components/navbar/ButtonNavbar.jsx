@@ -15,7 +15,7 @@ export const ButtonStartWriting = () => {
   }
 
   function login() {
-    console.log("login");
+    console.log("test login");
   }
   return (
     <Box>
