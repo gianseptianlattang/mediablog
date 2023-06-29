@@ -47,35 +47,22 @@ export default function Footer() {
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid
-          templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 2fr" }}
+          templateColumns={{ sm: "1fr 1fr", md: "2fr 2fr 2fr" }}
           spacing={8}
         >
-          <Stack spacing={6}>
-            <Box>
-              <Logo color={useColorModeValue("gray.700", "white")} />
-            </Box>
-            <Text fontSize={"sm"}>
-              © 2023 Gian Septian L. All rights reserved
-            </Text>
-          </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
             <Link href={"#"}>About us</Link>
             <Link href={"#"}>Blog</Link>
             <Link href={"#"}>Contact us</Link>
-            <Link href={"#"}>Pricing</Link>
-            <Link href={"#"}>Testimonials</Link>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Support</ListHeader>
             <Link href={"#"}>Help Center</Link>
             <Link href={"#"}>Terms of Service</Link>
-            <Link href={"#"}>Legal</Link>
-            <Link href={"#"}>Privacy Policy</Link>
-            <Link href={"#"}>Satus</Link>
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Stay up to date</ListHeader>
+            <ListHeader>Stay up to date, get newsletter</ListHeader>
             <Stack direction={"row"}>
               <Input
                 placeholder={"Your email address"}
@@ -95,6 +82,9 @@ export default function Footer() {
                 icon={<BiMailSend />}
               />
             </Stack>
+            <Text fontSize={"sm"}>
+              © 2023 Gian Septian L. All rights reserved
+            </Text>
           </Stack>
         </SimpleGrid>
       </Container>

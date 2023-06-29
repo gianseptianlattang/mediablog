@@ -200,6 +200,11 @@ export const ModalLogin = () => {
                       Sign in
                     </Button>
                   </Stack>
+                  <Stack spacing={10} pt={2}>
+                    <Button variant={"link"} color={"blue.500"}>
+                      Forgot Password
+                    </Button>
+                  </Stack>
                   <Stack pt={6}>
                     <Text align={"center"}>
                       No account? <ButtonModal modal="Sign Up" />

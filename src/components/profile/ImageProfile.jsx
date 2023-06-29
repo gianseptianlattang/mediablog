@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, FormControl, Button, Heading, Avatar } from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  Button,
+  Heading,
+  Avatar,
+  useToast,
+} from "@chakra-ui/react";
 import { Formik, Field } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -13,18 +20,16 @@ const uploadProfilePicture = async (test) => {
 
   const formData = new FormData();
   formData.append("file", test.profilePicture);
-  console.log(formData);
 
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  console.log(config);
 
   try {
     const response = await axios.post(url, formData, config);
-    console.log(response.data);
+    return response;
   } catch (err) {
     console.log(err);
   }
@@ -38,8 +43,10 @@ export const ImageProfile = () => {
 
   const handleSubmit = async (values) => {
     console.log(values.profilePicture);
-    await uploadProfilePicture(values);
-    window.location.reload();
+    let res = await uploadProfilePicture(values);
+    if (res) {
+      window.location.reload();
+    }
   };
 
   return (
@@ -64,7 +71,7 @@ export const ImageProfile = () => {
           <form onSubmit={handleSubmit}>
             <Field name="profilePicture">
               {({ field }) => (
-                <FormControl ml={"50px"}>
+                <FormControl ml={"50px"} p={5}>
                   <input
                     id="profilePicture"
                     type="file"

@@ -10,11 +10,13 @@ import {
   Spacer,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { FcLike } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCard } from "../../service/reducer/blogReducer";
+import axios from "axios";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
@@ -22,6 +24,40 @@ export const CardFrame = () => {
   const dispatch = useDispatch();
   const { result } = useSelector((state) => state.blogUser.pageBlog);
   const targetUrl = "api/blog?&sort=DESC&page=1&size=12";
+  const token = localStorage.getItem("tokenLogin");
+  const toast = useToast();
+
+  const handleLoginToast = (props, content) => {
+    toast({
+      description: content,
+      status: props,
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
+  };
+
+  const addLike = async (idBlog) => {
+    try {
+      const { data } = await axios.post(
+        `${baseUrl}api/blog/like`,
+        {
+          BlogId: idBlog,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (data === "Like added") {
+        handleLoginToast("success", "You have liked it!!");
+      }
+    } catch (err) {
+      console.log(err);
+      handleLoginToast("error", "Please check again");
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchCard(targetUrl));
@@ -56,7 +92,11 @@ export const CardFrame = () => {
               Read More
             </Button>
             <Spacer />
-            <Button variant="outline" leftIcon={<FcLike />}>
+            <Button
+              onClick={() => addLike(item.id)}
+              variant="outline"
+              leftIcon={<FcLike />}
+            >
               Like
             </Button>
           </Flex>

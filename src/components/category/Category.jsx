@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Container,
   Grid,
   GridItem,
@@ -8,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
@@ -83,16 +85,19 @@ export const CategoryBlog = () => {
             transform: "scale(1.07)",
           }}
         >
-          <Box
-            backgroundColor={"blackAlpha.600"}
-            m={"50px"}
-            py={"5px"}
-            borderRadius={"10px"}
-          >
-            <Heading size="lg" color="white">
-              {nameCategory[0]}
-            </Heading>
-          </Box>
+          <Link to={"/category"}>
+            <Box
+              backgroundColor={"blackAlpha.600"}
+              m={"50px"}
+              py={"5px"}
+              h={"200px"}
+              borderRadius={"10px"}
+            >
+              <Heading size="lg" color="white" pt={"75px"}>
+                {nameCategory[0]}
+              </Heading>
+            </Box>
+          </Link>
         </GridItem>
         <GridItem
           colSpan={3}
@@ -107,16 +112,19 @@ export const CategoryBlog = () => {
             transform: "scale(1.07)",
           }}
         >
-          <Box
-            backgroundColor={"blackAlpha.600"}
-            m={"50px"}
-            py={"5px"}
-            borderRadius={"10px"}
-          >
-            <Heading size="lg" color="white">
-              {nameCategory[1]}
-            </Heading>
-          </Box>
+          <Link to={"/category"}>
+            <Box
+              backgroundColor={"blackAlpha.600"}
+              m={"50px"}
+              py={"5px"}
+              borderRadius={"10px"}
+              h={"200px"}
+            >
+              <Heading size="lg" color="white" pt="75px">
+                {nameCategory[1]}
+              </Heading>
+            </Box>
+          </Link>
         </GridItem>
         <GridItem
           colSpan={2}
@@ -130,16 +138,19 @@ export const CategoryBlog = () => {
             transform: "scale(1.07)",
           }}
         >
-          <Box
-            backgroundColor={"blackAlpha.600"}
-            m={"50px"}
-            py={"5px"}
-            borderRadius={"10px"}
-          >
-            <Heading size="lg" color="white">
-              {nameCategory[2]}
-            </Heading>
-          </Box>
+          <Link to={"/category"}>
+            <Box
+              backgroundColor={"blackAlpha.600"}
+              m={"50px"}
+              py={"5px"}
+              borderRadius={"10px"}
+              h={"200px"}
+            >
+              <Heading size="lg" color="white" pt="75px">
+                {nameCategory[2]}
+              </Heading>
+            </Box>
+          </Link>
         </GridItem>
         <GridItem
           colSpan={2}
@@ -153,16 +164,19 @@ export const CategoryBlog = () => {
             transform: "scale(1.07)",
           }}
         >
-          <Box
-            backgroundColor={"blackAlpha.600"}
-            m={"50px"}
-            py={"5px"}
-            borderRadius={"10px"}
-          >
-            <Heading size="lg" color="white">
-              {nameCategory[3]}
-            </Heading>
-          </Box>
+          <Link to={"/category"}>
+            <Box
+              backgroundColor={"blackAlpha.600"}
+              m={"50px"}
+              py={"5px"}
+              borderRadius={"10px"}
+              h="200px"
+            >
+              <Heading size="lg" color="white" pt="75px">
+                {nameCategory[3]}
+              </Heading>
+            </Box>
+          </Link>
         </GridItem>
         <GridItem
           colSpan={2}
@@ -176,16 +190,19 @@ export const CategoryBlog = () => {
             transform: "scale(1.07)",
           }}
         >
-          <Box
-            backgroundColor={"blackAlpha.600"}
-            m={"50px"}
-            py={"5px"}
-            borderRadius={"10px"}
-          >
-            <Heading size="lg" color="white">
-              {nameCategory[4]}
-            </Heading>
-          </Box>
+          <Link to={"/category"}>
+            <Box
+              backgroundColor={"blackAlpha.600"}
+              m={"50px"}
+              py={"5px"}
+              borderRadius={"10px"}
+              h="200px"
+            >
+              <Heading size="lg" color="white" pt="75px">
+                {nameCategory[4]}
+              </Heading>
+            </Box>
+          </Link>
         </GridItem>
         <GridItem
           colSpan={3}
@@ -199,16 +216,19 @@ export const CategoryBlog = () => {
             transform: "scale(1.07)",
           }}
         >
-          <Box
-            backgroundColor={"blackAlpha.600"}
-            m={"50px"}
-            py={"5px"}
-            borderRadius={"10px"}
-          >
-            <Heading size="lg" color="white">
-              {nameCategory[5]}
-            </Heading>
-          </Box>
+          <Link to={"/category"}>
+            <Box
+              backgroundColor={"blackAlpha.600"}
+              m={"50px"}
+              py={"5px"}
+              borderRadius={"10px"}
+              h="200px"
+            >
+              <Heading size="lg" color="white" pt="75px">
+                {nameCategory[5]}
+              </Heading>
+            </Box>
+          </Link>
         </GridItem>
         <GridItem
           colSpan={3}
@@ -222,16 +242,19 @@ export const CategoryBlog = () => {
             transform: "scale(1.07)",
           }}
         >
-          <Box
-            backgroundColor={"blackAlpha.600"}
-            m={"50px"}
-            py={"5px"}
-            borderRadius={"10px"}
-          >
-            <Heading size="lg" color="white">
-              {nameCategory[6]}
-            </Heading>
-          </Box>
+          <Link to={"/category"}>
+            <Box
+              backgroundColor={"blackAlpha.600"}
+              m={"50px"}
+              py={"5px"}
+              borderRadius={"10px"}
+              h="200px"
+            >
+              <Heading size="lg" color="white" pt="75px">
+                {nameCategory[6]}
+              </Heading>
+            </Box>
+          </Link>
         </GridItem>
       </Grid>
     </Box>

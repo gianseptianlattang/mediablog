@@ -62,7 +62,7 @@ export const ProfileNavbar = () => {
           <MenuItem as="a" href="/profile" onClick={editTrue}>
             Edit Profile
           </MenuItem>
-          <MenuItem as="a" href="#">
+          <MenuItem as="a" href="/liked">
             Library
           </MenuItem>
           <MenuItem onClick={logout}>Logout</MenuItem>

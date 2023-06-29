@@ -66,7 +66,6 @@ const fetchUser = async (values) => {
 };
 
 export const ModalRegist = () => {
-  console.log("test");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfimrPassword, setShowConfirmPassword] = useState(false);
   const toast = useToast();
