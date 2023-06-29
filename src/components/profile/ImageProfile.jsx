@@ -6,6 +6,7 @@ import {
   Button,
   Heading,
   Image,
+  Avatar,
 } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
 import { useSelector } from "react-redux";
@@ -31,14 +32,14 @@ const uploadProfilePicture = async (test) => {
 
   try {
     const response = await axios.post(url, formData, config);
-    console.log(response.data); // Handle the response
-  } catch (error) {
-    console.log(error); // Handle error
+    console.log(response.data);
+  } catch (err) {
+    console.log(err);
   }
 };
 
 export const ImageProfile = () => {
-  const { imgProfile } = useSelector((state) => state.authUser.user);
+  const dataProfile = useSelector((state) => state.authUser.user);
   const initialValues = {
     profilePicture: null,
   };
@@ -56,9 +57,9 @@ export const ImageProfile = () => {
           My Profile
         </Heading>
       </Box>
-      <Image
-        src={`${baseUrl}${imgProfile}`}
-        alt={"Profile Image"}
+      <Avatar
+        src={`${baseUrl}${dataProfile.imgProfile}`}
+        name={dataProfile.username}
         boxSize="200px"
         borderRadius={"100%"}
         mx="auto"

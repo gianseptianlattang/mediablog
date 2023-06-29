@@ -34,7 +34,7 @@ export const ButtonEdit = () => {
   };
   return (
     <Box>
-      <Button my={"100px"} w={"100px"} colorScheme="teal" onClick={changeEdit}>
+      <Button my={"50px"} w={"100px"} colorScheme="teal" onClick={changeEdit}>
         Edit
       </Button>
     </Box>
