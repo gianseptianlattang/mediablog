@@ -27,7 +27,7 @@ import { useDispatch } from "react-redux";
 
 const phoneRegExp = /^(\+62|62|0)8[1-9][0-9]/;
 
-const LoginSchema = Yup.object().shape({
+const RegistSchema = Yup.object().shape({
   username: Yup.string()
     .required("Username is required")
     .min(3, "Username must have at least 3 characters"),
@@ -45,10 +45,13 @@ const LoginSchema = Yup.object().shape({
     .matches(/[0-9]/, "Password must have min 1 number")
     .matches(/[A-Z]/, "Password must have min 1 capital character")
     .matches(/[!@#$%^&*)(+=.,_-]/, "Password must have min 1 symbol"),
-  confirmPassword: Yup.string().required("Confirm password is required"),
+  confirmPassword: Yup.string()
+    .required("Confirm password is required")
+    .oneOf([Yup.ref("password")], "Confirm Password is not match"),
 });
 
 export const ModalRegist = () => {
+  console.log("test");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfimrPassword, setShowConfirmPassword] = useState(false);
   const toast = useToast();
@@ -76,9 +79,10 @@ export const ModalRegist = () => {
       password: "",
       confirmPassword: "",
     },
-    validationSchema: LoginSchema,
-    onSubmit: (values) => {
-      closeModal();
+    validationSchema: RegistSchema,
+    onSubmit: async (values) => {
+      console.log(values);
+      // closeModal();
     },
   });
   return (
@@ -142,9 +146,7 @@ export const ModalRegist = () => {
                     )}
                   </FormControl>
                   <FormControl
-                    isInvalid={
-                      formik.touched.loginInput && formik.errors.loginInput
-                    }
+                    isInvalid={formik.touched.phone && formik.errors.phone}
                   >
                     <FormLabel>Phone</FormLabel>
                     <Input
@@ -154,19 +156,24 @@ export const ModalRegist = () => {
                       onChange={formik.handleChange}
                       value={formik.values.phone}
                     />
-                    {formik.touched.loginInput && formik.errors.loginInput && (
-                      <FormErrorMessage>
-                        {formik.errors.loginInput}
-                      </FormErrorMessage>
+                    {formik.touched.phone && formik.errors.phone && (
+                      <FormErrorMessage>{formik.errors.phone}</FormErrorMessage>
                     )}
                   </FormControl>
-                  <FormControl id="password">
+                  <FormControl
+                    isInvalid={
+                      formik.touched.password && formik.errors.password
+                    }
+                  >
                     <FormLabel>Password</FormLabel>
                     <InputGroup>
                       <Input
                         id="password"
                         type={showPassword ? "text" : "password"}
                         variant="filled"
+                        placeholder="Abc@123"
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
                       />
                       <InputRightElement h={"full"}>
                         <Button
@@ -180,13 +187,21 @@ export const ModalRegist = () => {
                       </InputRightElement>
                     </InputGroup>
                   </FormControl>
-                  <FormControl id="confirmPassword">
+                  <FormControl
+                    isInvalid={
+                      formik.touched.confirmPassword &&
+                      formik.errors.confirmPassword
+                    }
+                  >
                     <FormLabel>Confirm Password</FormLabel>
                     <InputGroup>
                       <Input
                         id="confirmPassword"
                         type={showConfimrPassword ? "text" : "password"}
                         variant="filled"
+                        placeholder="Abc@123"
+                        onChange={formik.handleChange}
+                        value={formik.values.confirmPassword}
                       />
                       <InputRightElement h={"full"}>
                         <Button
@@ -203,7 +218,11 @@ export const ModalRegist = () => {
                     </InputGroup>
                   </FormControl>
                   <Stack spacing={10} pt={2}>
-                    <Button type="submit" width="full" colorScheme="blue">
+                    <Button
+                      width="full"
+                      colorScheme="blue"
+                      onClick={console.log("clicktest")}
+                    >
                       Sign up
                     </Button>
                   </Stack>

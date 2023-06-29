@@ -52,6 +52,7 @@ const fetchUser = async (values) => {
 };
 
 export const ModalLogin = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch();
 
@@ -89,8 +90,6 @@ export const ModalLogin = () => {
       }
     },
   });
-
-  const [showPassword, setShowPassword] = useState(false);
 
   function inputType(req) {
     if (req.match(/^(\+62|62|0)8[1-9][0-9]/))
