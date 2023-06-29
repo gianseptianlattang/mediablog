@@ -29,21 +29,13 @@ export const CategoryBlog = () => {
   };
 
   const fetchFav = async () => {
+    let imageCategory = [];
     try {
-      const res = await axios.get(`${baseUrl}api/blog/pagFav`);
-      const data = res.data.result;
-      const favCategory = data.map((item) => [item.CategoryId, item.imageURL]);
-      const favLength = favCategory.length;
-      let imageCategory = [];
-      for (let i = 0; i < favLength; i++) {
-        for (const data of favCategory) {
-          if (data[0] === i + 1) {
-            imageCategory[i] = data[1];
-            break;
-          } else {
-            imageCategory[i] = "Public/Blog-1687614498279581220.jpeg";
-          }
-        }
+      for (let i = 1; i <= 7; i++) {
+        const res = await axios.get(
+          `${baseUrl}api/blog/pagFav?page=1&orderBy=total_fav&sort=DESC&id_cat=${i}&size=20`
+        );
+        imageCategory.push(res.data.result[0]);
       }
       setImage(imageCategory);
     } catch (err) {
@@ -56,206 +48,208 @@ export const CategoryBlog = () => {
     fetchFav();
   }, []);
 
-  return (
-    <Box px={"300px"} py={"50px"} backgroundColor={"#FCD19C"}>
-      <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading size="xl" fontWeight={"bold"}>
-          Categories..
-        </Heading>
-      </Stack>
+  if (dataImage.length > 0) {
+    return (
+      <Box px={"300px"} py={"50px"} backgroundColor={"#FCD19C"}>
+        <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
+          <Heading size="xl" fontWeight={"bold"}>
+            Categories..
+          </Heading>
+        </Stack>
 
-      <Grid
-        h="1000px"
-        templateColumns="repeat(6, 1fr)"
-        templateRows="repeat(3, 1fr)"
-        gap={7}
-        px={"50px"}
-        py={"20px"}
-      >
-        <GridItem
-          colSpan={3}
-          backgroundImage={`${baseUrl}${dataImage[0]}`}
-          boxShadow={"xl"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          borderRadius={"10px"}
-          transition="0.3s ease-in-out"
-          _hover={{
-            transform: "scale(1.07)",
-          }}
+        <Grid
+          h="1000px"
+          templateColumns="repeat(6, 1fr)"
+          templateRows="repeat(3, 1fr)"
+          gap={7}
+          px={"50px"}
+          py={"20px"}
         >
-          <Link to={"/category"}>
-            <Box
-              backgroundColor={"blackAlpha.600"}
-              m={"50px"}
-              py={"5px"}
-              h={"200px"}
-              borderRadius={"10px"}
-            >
-              <Heading size="lg" color="white" pt={"75px"}>
-                {nameCategory[0]}
-              </Heading>
-            </Box>
-          </Link>
-        </GridItem>
-        <GridItem
-          colSpan={3}
-          backgroundImage={`${baseUrl}${dataImage[1]}`}
-          boxShadow={"xl"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          bgPos={"center"}
-          borderRadius={"10px"}
-          transition="0.3s ease-in-out"
-          _hover={{
-            transform: "scale(1.07)",
-          }}
-        >
-          <Link to={"/category"}>
-            <Box
-              backgroundColor={"blackAlpha.600"}
-              m={"50px"}
-              py={"5px"}
-              borderRadius={"10px"}
-              h={"200px"}
-            >
-              <Heading size="lg" color="white" pt="75px">
-                {nameCategory[1]}
-              </Heading>
-            </Box>
-          </Link>
-        </GridItem>
-        <GridItem
-          colSpan={2}
-          backgroundImage={`${baseUrl}${dataImage[2]}`}
-          boxShadow={"xl"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          borderRadius={"10px"}
-          transition="0.3s ease-in-out"
-          _hover={{
-            transform: "scale(1.07)",
-          }}
-        >
-          <Link to={"/category"}>
-            <Box
-              backgroundColor={"blackAlpha.600"}
-              m={"50px"}
-              py={"5px"}
-              borderRadius={"10px"}
-              h={"200px"}
-            >
-              <Heading size="lg" color="white" pt="75px">
-                {nameCategory[2]}
-              </Heading>
-            </Box>
-          </Link>
-        </GridItem>
-        <GridItem
-          colSpan={2}
-          backgroundImage={`${baseUrl}${dataImage[3]}`}
-          boxShadow={"xl"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          borderRadius={"10px"}
-          transition="0.3s ease-in-out"
-          _hover={{
-            transform: "scale(1.07)",
-          }}
-        >
-          <Link to={"/category"}>
-            <Box
-              backgroundColor={"blackAlpha.600"}
-              m={"50px"}
-              py={"5px"}
-              borderRadius={"10px"}
-              h="200px"
-            >
-              <Heading size="lg" color="white" pt="75px">
-                {nameCategory[3]}
-              </Heading>
-            </Box>
-          </Link>
-        </GridItem>
-        <GridItem
-          colSpan={2}
-          backgroundImage={`${baseUrl}${dataImage[4]}`}
-          boxShadow={"xl"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          borderRadius={"10px"}
-          transition="0.3s ease-in-out"
-          _hover={{
-            transform: "scale(1.07)",
-          }}
-        >
-          <Link to={"/category"}>
-            <Box
-              backgroundColor={"blackAlpha.600"}
-              m={"50px"}
-              py={"5px"}
-              borderRadius={"10px"}
-              h="200px"
-            >
-              <Heading size="lg" color="white" pt="75px">
-                {nameCategory[4]}
-              </Heading>
-            </Box>
-          </Link>
-        </GridItem>
-        <GridItem
-          colSpan={3}
-          backgroundImage={`${baseUrl}${dataImage[5]}`}
-          boxShadow={"xl"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          borderRadius={"10px"}
-          transition="0.3s ease-in-out"
-          _hover={{
-            transform: "scale(1.07)",
-          }}
-        >
-          <Link to={"/category"}>
-            <Box
-              backgroundColor={"blackAlpha.600"}
-              m={"50px"}
-              py={"5px"}
-              borderRadius={"10px"}
-              h="200px"
-            >
-              <Heading size="lg" color="white" pt="75px">
-                {nameCategory[5]}
-              </Heading>
-            </Box>
-          </Link>
-        </GridItem>
-        <GridItem
-          colSpan={3}
-          backgroundImage={`${baseUrl}${dataImage[6]}`}
-          boxShadow={"xl"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          borderRadius={"10px"}
-          transition="0.3s ease-in-out"
-          _hover={{
-            transform: "scale(1.07)",
-          }}
-        >
-          <Link to={"/category"}>
-            <Box
-              backgroundColor={"blackAlpha.600"}
-              m={"50px"}
-              py={"5px"}
-              borderRadius={"10px"}
-              h="200px"
-            >
-              <Heading size="lg" color="white" pt="75px">
-                {nameCategory[6]}
-              </Heading>
-            </Box>
-          </Link>
-        </GridItem>
-      </Grid>
-    </Box>
-  );
+          <GridItem
+            colSpan={3}
+            backgroundImage={`${baseUrl}${dataImage[0].imageURL}`}
+            boxShadow={"xl"}
+            bgRepeat={"no-repeat"}
+            bgSize={"cover"}
+            borderRadius={"10px"}
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.07)",
+            }}
+          >
+            <Link to={"/category"}>
+              <Box
+                backgroundColor={"blackAlpha.600"}
+                m={"50px"}
+                py={"5px"}
+                h={"200px"}
+                borderRadius={"10px"}
+              >
+                <Heading size="lg" color="white" pt={"75px"}>
+                  {nameCategory[0]}
+                </Heading>
+              </Box>
+            </Link>
+          </GridItem>
+          <GridItem
+            colSpan={3}
+            backgroundImage={`${baseUrl}${dataImage[1].imageURL}`}
+            boxShadow={"xl"}
+            bgRepeat={"no-repeat"}
+            bgSize={"cover"}
+            bgPos={"center"}
+            borderRadius={"10px"}
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.07)",
+            }}
+          >
+            <Link to={"/category"}>
+              <Box
+                backgroundColor={"blackAlpha.600"}
+                m={"50px"}
+                py={"5px"}
+                borderRadius={"10px"}
+                h={"200px"}
+              >
+                <Heading size="lg" color="white" pt="75px">
+                  {nameCategory[1]}
+                </Heading>
+              </Box>
+            </Link>
+          </GridItem>
+          <GridItem
+            colSpan={2}
+            backgroundImage={`${baseUrl}${dataImage[2].imageURL}`}
+            boxShadow={"xl"}
+            bgRepeat={"no-repeat"}
+            bgSize={"cover"}
+            borderRadius={"10px"}
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.07)",
+            }}
+          >
+            <Link to={"/category"}>
+              <Box
+                backgroundColor={"blackAlpha.600"}
+                m={"50px"}
+                py={"5px"}
+                borderRadius={"10px"}
+                h={"200px"}
+              >
+                <Heading size="lg" color="white" pt="75px">
+                  {nameCategory[2]}
+                </Heading>
+              </Box>
+            </Link>
+          </GridItem>
+          <GridItem
+            colSpan={2}
+            backgroundImage={`${baseUrl}${dataImage[3].imageURL}`}
+            boxShadow={"xl"}
+            bgRepeat={"no-repeat"}
+            bgSize={"cover"}
+            borderRadius={"10px"}
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.07)",
+            }}
+          >
+            <Link to={"/category"}>
+              <Box
+                backgroundColor={"blackAlpha.600"}
+                m={"50px"}
+                py={"5px"}
+                borderRadius={"10px"}
+                h="200px"
+              >
+                <Heading size="lg" color="white" pt="75px">
+                  {nameCategory[3]}
+                </Heading>
+              </Box>
+            </Link>
+          </GridItem>
+          <GridItem
+            colSpan={2}
+            backgroundImage={`${baseUrl}${dataImage[4].imageURL}`}
+            boxShadow={"xl"}
+            bgRepeat={"no-repeat"}
+            bgSize={"cover"}
+            borderRadius={"10px"}
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.07)",
+            }}
+          >
+            <Link to={"/category"}>
+              <Box
+                backgroundColor={"blackAlpha.600"}
+                m={"50px"}
+                py={"5px"}
+                borderRadius={"10px"}
+                h="200px"
+              >
+                <Heading size="lg" color="white" pt="75px">
+                  {nameCategory[4]}
+                </Heading>
+              </Box>
+            </Link>
+          </GridItem>
+          <GridItem
+            colSpan={3}
+            backgroundImage={`${baseUrl}${dataImage[5].imageURL}`}
+            boxShadow={"xl"}
+            bgRepeat={"no-repeat"}
+            bgSize={"cover"}
+            borderRadius={"10px"}
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.07)",
+            }}
+          >
+            <Link to={"/category"}>
+              <Box
+                backgroundColor={"blackAlpha.600"}
+                m={"50px"}
+                py={"5px"}
+                borderRadius={"10px"}
+                h="200px"
+              >
+                <Heading size="lg" color="white" pt="75px">
+                  {nameCategory[5]}
+                </Heading>
+              </Box>
+            </Link>
+          </GridItem>
+          <GridItem
+            colSpan={3}
+            backgroundImage={`${baseUrl}${dataImage[6].imageURL}`}
+            boxShadow={"xl"}
+            bgRepeat={"no-repeat"}
+            bgSize={"cover"}
+            borderRadius={"10px"}
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.07)",
+            }}
+          >
+            <Link to={"/category"}>
+              <Box
+                backgroundColor={"blackAlpha.600"}
+                m={"50px"}
+                py={"5px"}
+                borderRadius={"10px"}
+                h="200px"
+              >
+                <Heading size="lg" color="white" pt="75px">
+                  {nameCategory[6]}
+                </Heading>
+              </Box>
+            </Link>
+          </GridItem>
+        </Grid>
+      </Box>
+    );
+  }
 };
