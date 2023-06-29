@@ -1,20 +1,26 @@
 import {
+  Button,
   Card,
   CardBody,
   Center,
+  Divider,
+  Flex,
   Heading,
   Image,
+  Spacer,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 const token = localStorage.getItem("tokenLogin");
 
 export const CardLiked = () => {
   const [dataLiked, setLiked] = useState([]);
+  const navigate = useNavigate();
 
   const fetchLike = async () => {
     try {
@@ -57,6 +63,18 @@ export const CardLiked = () => {
               <Text noOfLines={2}>{item.Blog.content}</Text>
             </Stack>
           </CardBody>
+          <Divider />
+
+          <Flex p={"30px"} justifyContent="space-between">
+            <Button
+              onClick={() => navigate("/detail")}
+              variant="solid"
+              colorScheme="orange"
+            >
+              Read More
+            </Button>
+            <Spacer />
+          </Flex>
         </Card>
       );
     });
