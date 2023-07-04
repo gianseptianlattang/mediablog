@@ -1,10 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
+import { DetailBlogPage } from "../components/detailPage/_DetailPage";
 
-export const DetailPage = () => {
+export const DetailPage = (data) => {
   return (
     <Box pt={"100px"}>
-      <Text fontSize={"6xl"}>Detail Page Here!</Text>
+      <DetailBlogPage dataDetail={data} />
     </Box>
   );
 };

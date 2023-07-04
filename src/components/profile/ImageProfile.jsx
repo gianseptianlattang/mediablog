@@ -35,7 +35,6 @@ export const ImageProfile = () => {
   };
 
   const handleSubmit = async (values) => {
-    console.log(values.profilePicture);
     let res = await uploadProfilePicture(values);
     if (res) {
       window.location.reload();

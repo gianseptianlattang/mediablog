@@ -4,6 +4,7 @@ import profileReducer from "./reducer/profileReducer";
 import authReducer from "./reducer/authReducer";
 import blogReducer from "./reducer/blogReducer";
 import categoryReducer from "./reducer/categoryReducer";
+import createBlogReducer from "./reducer/createBlogReducer";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     authUser: authReducer,
     blogUser: blogReducer,
     dataCategory: categoryReducer,
+    dataBlog: createBlogReducer,
   },
 });

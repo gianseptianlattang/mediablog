@@ -22,7 +22,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />}></Route>
           <Route path="/liked" element={<LikedPage />}></Route>
           <Route path="/create" element={<CreatePage />}></Route>
-          <Route path="/detail" element={<DetailPage />}></Route>
+          <Route path="/detailpage" element={<DetailPage />}></Route>
         </Routes>
       </Auth>
     </div>
