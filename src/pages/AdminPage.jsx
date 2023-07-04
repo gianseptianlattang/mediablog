@@ -1,6 +1,4 @@
-import React from "react";
-import { Box, useToast } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 const verify = async () => {
@@ -37,23 +35,15 @@ export const AdminPage = () => {
     });
   };
 
-  return (
-    <Box pt={"200px"}>
-      <Button
-        colorScheme="teal"
-        boxSize={"100px"}
-        onClick={async () => {
-          const userToast = await verify();
-          if (userToast === "success") {
-            handleLoginToast("success", "Account verified");
-          } else {
-            handleLoginToast("error", "Please check again");
-          }
-          verify();
-        }}
-      >
-        Verify
-      </Button>
-    </Box>
-  );
+  const finished = async () => {
+    const userToast = await verify();
+    if (userToast === "success") {
+      handleLoginToast("success", "Account verified");
+    } else {
+      handleLoginToast("error", "Please check again");
+    }
+    verify();
+  };
+
+  finished();
 };
