@@ -13,7 +13,9 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createBlog } from "../../service/reducer/createBlogReducer";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 const token = localStorage.getItem("tokenLogin");
@@ -21,10 +23,11 @@ const token = localStorage.getItem("tokenLogin");
 export const CardLiked = () => {
   const [dataLiked, setLiked] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const fetchLike = async () => {
     try {
-      const { data } = await axios.get(`${baseUrl}api/blog/pagLike`, {
+      const { data } = await axios.get(`${baseUrl}api/blog/pagLike?size=200`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,6 +43,12 @@ export const CardLiked = () => {
       fetchLike();
     }
   }, []);
+
+  function handleReadMore(item) {
+    console.log(item);
+    dispatch(createBlog(item));
+    navigate("/detailpage");
+  }
 
   if (dataLiked.length > 0) {
     return dataLiked.map((item) => {
@@ -58,7 +67,7 @@ export const CardLiked = () => {
 
             <Stack mt="6" spacing="3">
               <Heading noOfLines={1} size="md">
-                {item.title}
+                {item.Blog.title}
               </Heading>
               <Text noOfLines={2}>{item.Blog.content}</Text>
             </Stack>
@@ -67,7 +76,7 @@ export const CardLiked = () => {
 
           <Flex p={"30px"} justifyContent="space-between">
             <Button
-              onClick={() => navigate("/detail")}
+              onClick={() => handleReadMore(item.Blog)}
               variant="solid"
               colorScheme="orange"
             >

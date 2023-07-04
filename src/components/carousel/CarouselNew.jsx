@@ -9,13 +9,16 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { createBlog } from "../../service/reducer/createBlogReducer";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
 export const CarouselNew = () => {
   const [newBlog, setNewBlog] = useState([]);
+  const dispatch = useDispatch();
 
   const fetchNewBlog = async () => {
     try {
@@ -41,6 +44,11 @@ export const CarouselNew = () => {
     autoplaySpeed: 3000,
     cssEase: "linear",
   };
+
+  function handleReadMore(item) {
+    console.log(item);
+    dispatch(createBlog(item));
+  }
   return (
     <Box backgroundColor={"black"} pt={"20px"}>
       <Heading size="xl" color="white" fontWeight={"bold"}>
@@ -51,7 +59,7 @@ export const CarouselNew = () => {
           {newBlog.map((item) => {
             return (
               <Card>
-                <Link to={"/detail"}>
+                <Link onClick={() => handleReadMore(item)} to={"/detailpage"}>
                   <CardBody
                     backgroundColor={"black"}
                     transition="0.2s ease-in-out"

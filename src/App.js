@@ -20,6 +20,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="/category" element={<CategoryPage />}></Route>
           <Route path="/admin" element={<AdminPage />}></Route>
+          <Route path="/verification/:token" element={<AdminPage />} />
           <Route path="/liked" element={<LikedPage />}></Route>
           <Route path="/create" element={<CreatePage />}></Route>
           <Route path="/detailpage" element={<DetailPage />}></Route>

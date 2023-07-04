@@ -1,11 +1,11 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import { DetailBlogPage } from "../components/detailPage/_DetailPage";
 
-export const DetailPage = (data) => {
+export const DetailPage = () => {
   return (
     <Box pt={"100px"}>
-      <DetailBlogPage dataDetail={data} />
+      <DetailBlogPage />
     </Box>
   );
 };

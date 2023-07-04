@@ -6,6 +6,8 @@ import { Box, Flex, Heading, IconButton, Image, Text } from "@chakra-ui/react";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createBlog } from "../../service/reducer/createBlogReducer";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
@@ -15,6 +17,7 @@ export const CarouselFav = () => {
   const [nav2, setNav2] = useState(null);
   let sliderRef1 = useRef(null);
   let sliderRef2 = useRef(null);
+  const dispatch = useDispatch();
 
   const fetchFav = async () => {
     try {
@@ -34,6 +37,11 @@ export const CarouselFav = () => {
     fetchFav();
   }, []);
 
+  function handleReadMore(item) {
+    console.log(item);
+    dispatch(createBlog(item));
+  }
+
   return (
     <Box backgroundColor={"rgb(242, 77, 46)"} px={"300px"} py={"100px"}>
       <Heading size="xl" color="white" fontWeight={"bold"} p={3}>
@@ -50,7 +58,7 @@ export const CarouselFav = () => {
           >
             {fav.map((item) => {
               return (
-                <Link to={"/detail"}>
+                <Link onClick={() => handleReadMore(item)} to={"/detailpage"}>
                   <Box
                     backgroundImage={`${baseUrl}${item.imageURL}`}
                     h={"600px"}

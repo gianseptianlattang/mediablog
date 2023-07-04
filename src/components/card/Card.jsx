@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCard } from "../../service/reducer/blogReducer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { createBlog } from "../../service/reducer/createBlogReducer";
 
 const baseUrl = "https://minpro-blog.purwadhikabootcamp.com/";
 
@@ -65,6 +66,12 @@ export const CardFrame = () => {
     dispatch(fetchCard(targetUrl));
   }, []);
 
+  function handleReadMore(item) {
+    console.log(item);
+    dispatch(createBlog(item));
+    navigate("/detailpage");
+  }
+
   if (result.length !== 0) {
     return result.map((item) => {
       return (
@@ -91,7 +98,7 @@ export const CardFrame = () => {
 
           <Flex p={"30px"} justifyContent="space-between">
             <Button
-              onClick={() => navigate("/detail")}
+              onClick={() => handleReadMore(item)}
               variant="solid"
               colorScheme="orange"
             >
