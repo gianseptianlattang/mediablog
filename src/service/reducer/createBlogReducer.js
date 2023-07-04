@@ -42,7 +42,6 @@ export const fetchCreateBlog = (request) => {
       const data = res.data;
       if (data.message === "Success Added") {
         dispatch(createBlog(data.data));
-        console.log(data.data);
         return data.message;
       }
     } catch (err) {

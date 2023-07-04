@@ -38,7 +38,6 @@ export const CarouselFav = () => {
   }, []);
 
   function handleReadMore(item) {
-    console.log(item);
     dispatch(createBlog(item));
   }
 

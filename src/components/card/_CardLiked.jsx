@@ -45,7 +45,6 @@ export const CardLiked = () => {
   }, []);
 
   function handleReadMore(item) {
-    console.log(item);
     dispatch(createBlog(item));
     navigate("/detailpage");
   }

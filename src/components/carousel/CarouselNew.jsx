@@ -46,7 +46,6 @@ export const CarouselNew = () => {
   };
 
   function handleReadMore(item) {
-    console.log(item);
     dispatch(createBlog(item));
   }
   return (

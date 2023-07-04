@@ -67,7 +67,6 @@ export const CardFrame = () => {
   }, []);
 
   function handleReadMore(item) {
-    console.log(item);
     dispatch(createBlog(item));
     navigate("/detailpage");
   }
