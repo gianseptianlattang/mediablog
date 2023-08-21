@@ -22,7 +22,7 @@ export const CarouselFav = () => {
   const fetchFav = async () => {
     try {
       const res = await axios.get(
-        `${baseUrl}api/blog/pagFav?page=1&orderBy=total_fav&sort=DESC&search=Tesla&size=20`
+        `${baseUrl}api/blog/pagFav?page=1&orderBy=total_fav&sort=DESC&size=10`
       );
       const data = res.data.result;
       setFav(data);
